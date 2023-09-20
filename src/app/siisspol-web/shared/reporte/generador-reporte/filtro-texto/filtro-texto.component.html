@@ -1,0 +1,8 @@
+<div class="row center">
+  <mat-form-field>
+    <mat-label>{{'siisspolweb.comun.label.texto.buscar'|translate}}</mat-label>
+    <input matInput placeholder="{{'siisspolweb.comun.label.texto.buscado'|translate}}"
+           [(ngModel)]="campoEntrada"
+           (ngModelChange)="setearFiltro($event)">
+  </mat-form-field>
+</div>

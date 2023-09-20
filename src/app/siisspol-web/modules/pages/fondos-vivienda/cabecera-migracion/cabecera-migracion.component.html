@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-content>
+
+    <div *ngIf="presentaCabeceraPrincipal" class="row">
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalregistros'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.registros}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.grupos'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.grupo}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalaporte'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.aporte|currency}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalinteres'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.interes|currency}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalaportes'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.total|currency}}" class="form-control">
+      </div>
+    </div >
+    <div *ngIf="!presentaCabeceraPrincipal" class="row">
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalregistros'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.registros}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.grupo'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.grupo}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.codigo'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.codigo}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalaporte'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.aporte|currency}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalinteres'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.interes|currency}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.fondosv.form.label.totalaportes'|translate}}:</label>
+        <input disabled="true" value="{{objMigracionFondos.total|currency}}" class="form-control">
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

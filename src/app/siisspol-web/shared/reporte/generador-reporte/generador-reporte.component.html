@@ -1,0 +1,48 @@
+<app-dialog-title [titulo]="'siisspolweb.comun.model.titulo'"></app-dialog-title>
+<mat-card>
+  <mat-card-content>
+
+    <app-filtro-texto (filtroSalida)="setearParametros($event)"
+                      (validador)="filtroValidado=$event"
+                      [nombreCampo]="filtroActivo.nombreCampo"
+                      [filtroEntrada]="filtrosGenerado"
+                      *ngIf="filtroActivo && filtroActivo.tipoEntrada=='TEXTO-BUSQUEDA'"></app-filtro-texto>
+    <app-filtro-fecha *ngIf="filtroActivo && filtroActivo.tipoEntrada=='FECHA-RANGO'"
+                      (validador)="filtroValidado=$event"
+                      [filtroEntrada]="filtrosGenerado"
+                      (filtroSalida)="setearParametros($event)">
+
+    </app-filtro-fecha>
+    <app-filtro-fecha-todos *ngIf="filtroActivo && filtroActivo.tipoEntrada=='TODOS-FECHA-RANGO'"
+                      (validador)="filtroValidado=$event"
+                      [filtroEntrada]="filtrosGenerado"
+                      (filtroSalida)="setearParametros($event)">
+
+    </app-filtro-fecha-todos>
+    <div class="list-group" *ngIf="!filtroActivo && mostrarPrimerFiLtro">
+      <div *ngFor="let col of lstReportes">
+        <a
+          [class]="!col.seleccionado ? 'list-group-item list-group-item-action':'list-group-item list-group-item-action active'"
+          (click)="objetoSelccionado(col)"
+        >{{col.reporteSistema.nombreReporte}}</a>
+      </div>
+    </div>
+    <!--<pre>{{lstReportes|json}}</pre>-->
+  </mat-card-content>
+</mat-card>
+<mat-dialog-actions class="modal-footer" align="center">
+  <button type="button" class="btn btn-warning" mat-dialog-close>{{"siisspolweb.comun.cancelar"|translate}}</button>
+  <button type="button" *ngIf="!esUltimoFiltro"
+          class="btn btn-success"
+          (click)="siguienteProceso()"
+  >{{'siisspolweb.comun.aceptar'|translate}}</button>
+  <button type="button" *ngIf="esUltimoFiltro"
+          [disabled]="!filtroValidado"
+          class="btn btn-info"
+          mat-dialog-close
+          [parametrosReporte]="filtrosGenerado"
+          appReporte
+          [identificadorReporte]="reporteSelccionado.reporteSistema.identificadorReporte"
+  >{{'siisspolweb.comun.imprimir'|translate}}</button>
+</mat-dialog-actions>
+

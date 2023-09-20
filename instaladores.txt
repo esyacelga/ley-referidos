@@ -1,0 +1,4 @@
+npm install --save @fullcalendar/core @ng-select/ng-select @ngrx/store @ngrx/store-devtools @ngx-translate/core @ngx-translate/http-loader @popperjs/core @types/underscore
+bootstrap chart.js cors jquery  ng-block-ui ngx-toastr  quill rxjs stream stream-browserify timers timers-browserify tslib underscore xml2js zone.js primeng @types/jquery @types/xml2js
+
+npm install --save @types/xml2js

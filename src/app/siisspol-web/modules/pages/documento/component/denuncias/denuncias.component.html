@@ -1,0 +1,131 @@
+
+<div style="height: 100%">
+  <div class="separador">
+    <h1>{{'siisspolweb.documento.label.titulo.denuncia'|translate}}</h1>
+    <h3><strong>{{'siisspolweb.label.documento.formulario.denuncia'|translate}}</strong></h3>
+    <div>
+      <div class="row">
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.seleccion.tipoDelito'|translate}}</strong></h2>
+          <mat-form-field appearance="fill">
+            <mat-label>{{'siisspolweb.documento.label.tipodelito'|translate}}</mat-label>
+            <mat-select name="food" [(ngModel)]="objetFormulario.tipoDelito">
+              <mat-option *ngFor="let item of lstTipoDelito" [value]="item">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <label *ngIf="objetFormulario.tipoDelito"><em>{{objetFormulario.tipoDelito.descripcion}}</em></label>
+        </div>
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.seleccion.tipoDenuncia'|translate}}</strong></h2>
+          <mat-form-field appearance="fill">
+            <mat-label>{{'siisspolweb.documento.label.tipodenuncia'|translate}}</mat-label>
+            <mat-select name="food"
+                        (selectionChange)="deshabilitarCampos($event)"
+                        [(ngModel)]="objetFormulario.tipoDenuncia">
+              <mat-option *ngFor="let item of lstTipoDenuncia"
+                          [value]="item">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <label *ngIf="objetFormulario.tipoDenuncia"><em>{{objetFormulario.tipoDenuncia.descripcion}}</em></label>
+          <!-- <div *ngIf="objetFormulario.tipoDenuncia.codigo==='ANON'?objetFormulario.idTipoDenunciante='NULL':'' "></div>-->
+        </div>
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.seleccion.origen'|translate}}</strong></h2>
+          <mat-form-field appearance="fill">
+            <mat-label>{{'siisspolweb.label.origen'|translate}}</mat-label>
+            <mat-select name="food" [(ngModel)]="objetFormulario.idOrigen">
+              <mat-option *ngFor="let item of lstCoordinacion" [value]="item.idCatalogo">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.seleccion.tipo.denunciante'|translate}}</strong></h2>
+          <mat-form-field appearance="fill">
+            <mat-label>{{'siisspolweb.label.seleccion.tipo.persona.denunciante'|translate}}</mat-label>
+            <mat-select name="food" [(ngModel)]="objetFormulario.idTipoDenunciante">
+              <mat-option [disabled]="deshabilitarCampo" *ngFor="let item of lstCatalogoDenunciante"
+                          [value]="item.valor">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.ingrese.identificacion'|translate}}</strong></h2>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'siisspolweb.persona.label.identificacion'|translate}}</mat-label>
+            <input [disabled]="deshabilitarCampo" matInput placeholder="Ejem. 172XXXXXXX" [(ngModel)]="cedula"
+                   (change)="buscarPeronaPorCedula(cedula)">
+          </mat-form-field>
+          <h2 *ngIf="objPersona">{{objPersona.nombre}}</h2>
+        </div>
+        <div class="col-sm">
+          <h2><strong>{{'siisspolweb.label.ingrese.correo'|translate}}</strong></h2>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'siisspolweb.label.correo'|translate}}</mat-label>
+            <input type="email" matInput [(ngModel)]="objetFormulario.correo" placeholder="Ejem. micorreo@isspol.org.ec"
+                   value="">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <!--  <h2><strong>{{'siisspolweb.label.ingrese.telefono'|translate}}</strong></h2>-->
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'siisspolweb.label.numero'|translate}}</mat-label>
+            <input matInput [(ngModel)]="objetFormulario.telefono" placeholder="Ejem. 099XXXXXXXX" maxlength="15">
+          </mat-form-field>
+        </div>
+        <!--<h2><strong>{{'siisspolweb.label.ingrese.descripcion'|translate}}</strong></h2>-->
+        <mat-form-field class="example-full-width">
+          <mat-label>{{'siisspolweb.label.ingrese.descripcion'|translate}}</mat-label>
+          <textarea matInput [(ngModel)]="objetFormulario.descripcion" maxlength="2500"
+                    rows="4"
+                    placeholder="{{'siisspolweb.label.ingrese.echos'|translate}}"></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <div *ngIf="objetFormulario.tipoDelito" class="row">
+        <div class="col-sm">
+          <div class="pull-right card flex justify-content-center">
+            <p-toast></p-toast>
+            <!--<div *ngIf="imagenAdjunto"><strong>{{imagenAdjunto.name}}</strong></div>-->
+            <p-fileUpload uploadLabel="4545" mode="basic" chooseLabel="{{nombreArchivo}}" name="demo[]"
+                          url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" accept=".pdf, .jpg, .png"
+                          (onUpload)="onFileUpload($event)"></p-fileUpload>
+
+          </div>
+
+        </div>
+        <div class="line"></div>
+        <h6><strong>{{'siisspolweb.label.documento.formulario.descripcion'|translate}}</strong></h6>
+      </div>
+
+      <app-pregunta *ngIf="objetFormulario.tipoDelito" (preguntas)="cargarPreguntas($event)"></app-pregunta>
+      <div class="line"></div>
+
+      <div class="row">
+        <div class="col-sm">
+          <button mat-dialog-close
+                  (click)="abrirVentanaConfirmacion('siisspolweb.label.comun.titulo.pop.up','siisspolweb.label.denuncia.mensaje.pop.up', 'REGISTRAR')"
+                  class="btn btn-success">{{'siisspolweb.label.registrar'|translate}}</button>
+          <button mat-dialog-close
+                  (click)="abrirVentanaConfirmacion('siisspolweb.label.comun.titulo.pop.up','siisspolweb.label.denuncia.mensaje.limpiar.popup', 'LIMPIAR')"
+                  class="btn btn-warning">{{'siisspolweb.label.comun.limpiar'|translate}}</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

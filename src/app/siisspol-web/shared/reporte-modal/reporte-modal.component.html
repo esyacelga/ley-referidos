@@ -1,0 +1,18 @@
+<!--
+disableClose: true
+<app-dialog-title></app-dialog-title>
+<mat-dialog-content class="mat-typography">
+  <app-pdf-viewer [base64Image]="base64ImageData"></app-pdf-viewer>
+</mat-dialog-content>
+<mat-dialog-actions class="modal-footer" align="end">
+  &lt;!&ndash;<button mat-button mat-dialog-close class="btn btn-primary">{{'siisspolweb.comun.aceptar'|translate}}</button>&ndash;&gt;
+  <button type="button" class="btn btn-primary" mat-dialog-close>{{"siisspolweb.comun.aceptar"|translate}}</button>
+</mat-dialog-actions>
+-->
+<mat-dialog-content class="mat-typography">
+  <app-pdf-viewer [base64Image]="base64ImageData"></app-pdf-viewer>
+</mat-dialog-content>
+<mat-dialog-actions class="modal-footer" align="end">
+  <button type="button" class="btn btn-primary" mat-dialog-close>{{"siisspolweb.comun.cerrar"|translate}}</button>
+</mat-dialog-actions>
+

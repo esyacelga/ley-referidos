@@ -1,0 +1,36 @@
+<app-dialog-title [titulo]="'siisspolweb.label.comun.ingrese.informacion'"></app-dialog-title>
+<mat-card>
+  <mat-card-content>
+    <app-form-crud-poa></app-form-crud-poa>
+  </mat-card-content>
+</mat-card>
+<mat-dialog-actions class="modal-footer" align="center">
+  <app-barra-herramientas-modal></app-barra-herramientas-modal>
+  <!--  <p-toolbar>
+      <div class="p-toolbar-group-start">
+        <p-button label="New" icon="pi pi-plus" class="mr-2"></p-button>
+        <p-button label="Upload" icon="pi pi-upload" styleClass="p-button-success"></p-button>
+        <i class="p-toolbar-separator pi pi-bars mr-2" style="vertical-align: middle"></i>
+        <p-splitButton label="Save" icon="pi pi-check"  styleClass="p-button-warning"></p-splitButton>
+      </div>
+      <div class="p-toolbar-group-end">
+        <p-button icon="pi pi-search" class="mr-2"></p-button>
+        <p-button icon="pi pi-calendar" styleClass="p-button-success mr-2"></p-button>
+        <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+      </div>
+    </p-toolbar>-->
+  <!--  <button type="button" class="btn btn-warning" mat-dialog-close>{{"siisspolweb.comun.cancelar"|translate}}</button>
+    <button type="button" *ngIf="!esUltimoFiltro"
+            class="btn btn-success"
+            (click)="siguienteProceso()"
+    >{{'siisspolweb.comun.aceptar'|translate}}</button>
+    <button type="button" *ngIf="esUltimoFiltro"
+            [disabled]="!filtroValidado"
+            class="btn btn-info"
+            mat-dialog-close
+            [parametrosReporte]="filtrosGenerado"
+            appReporte
+            [identificadorReporte]="reporteSelccionado.reporteSistema.identificadorReporte"
+    >{{'siisspolweb.comun.imprimir'|translate}}</button>-->
+</mat-dialog-actions>
+

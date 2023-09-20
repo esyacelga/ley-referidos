@@ -1,0 +1,90 @@
+<app-dialog-title></app-dialog-title>
+<mat-dialog-content class="mat-typography">
+  <div class="line-sm"></div>
+  <div class="row">
+    <div class="col-sm">
+      <div>
+        <span>
+          <strong>{{'siisspolweb.comun.auditoria.usuario.creacion' | translate}}</strong>
+        </span>
+      </div>
+      <div>
+        <span>{{objAuditoria.creacionUsuario}}</span>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div>
+        <span>
+           <strong>{{'siisspolweb.comun.auditoria.fecha.creacion' | translate}}
+           </strong>
+        </span>
+      </div>
+      <div>
+        <span>
+          {{objAuditoria.creacionFecha}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="row">
+    <div class="col-sm">
+      <div>
+        <span><strong>
+          {{'siisspolweb.comun.auditoria.equipo.creacion' | translate}}
+        </strong>
+        </span>
+      </div>
+      <div>
+        <span>{{objAuditoria.creacionEquipo}}</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="line-sm" ng-if="mostrarAuditModif == 'true'"></div>
+  <div class="row" ng-if="mostrarAuditModif == 'true'">
+    <div class="col-sm">
+      <div>
+        <span>
+          <strong>
+          {{'siisspolweb.comun.auditoria.usuario.modificacion' | translate}}
+            </strong>
+        </span>
+
+      </div>
+      <div>
+        <span>{{objAuditoria.modificaUsuario}}</span>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div>
+        <span><strong>
+          {{'siisspolweb.comun.auditoria.fecha.modificacion' | translate}}
+        </strong>
+        </span>
+      </div>
+      <div>
+        <span>{{objAuditoria.modificaFecha }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="line-sm" ng-if="mostrarAuditModif == 'true'"></div>
+
+  <div class="line-sm" ng-if="mostrarAuditModif == 'true'"></div>
+  <div class="line"></div>
+  <div class="row-" ng-if="mostrarAuditModif == 'true'">
+    <div class="col-sm-4">
+      <span><strong>{{'siisspolweb.comun.auditoria.equipo.moficacion' | translate}}</strong></span>
+    </div>
+    <div class="col-sm-6">
+      <span>{{objAuditoria.modificaEquipo}}</span>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions class="modal-footer" align="end">
+  <!--<button mat-button mat-dialog-close class="btn btn-primary">{{'siisspolweb.comun.aceptar'|translate}}</button>-->
+  <button type="button" class="btn btn-primary" mat-dialog-close >{{"siisspolweb.comun.aceptar"|translate}}</button>
+</mat-dialog-actions>

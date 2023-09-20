@@ -1,0 +1,103 @@
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+
+<div class="ui-cuerpo-pagina">
+  <div *ngIf="objCabecera">
+    <app-cabecera-migracion [presentaCabeceraPrincipal]="presentarPrincipal"
+                            [objMigracionFondos]="objCabecera"></app-cabecera-migracion>
+  </div>
+
+  <mat-card *ngIf="!objMigracion && lstMigracionfv.length>=0">
+    <mat-card-content>
+      <p-table [value]="lstMigracionfv"
+               styleClass="p-datatable-striped" selectionMode="single"
+               [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10,25,50,100,200]">
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            {{'siisspolweb.fondosv.form.label.titulo'|translate}}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+
+          <tr>
+            <th pSortableColumn="numero">{{'siisspolweb.fondosv.tabla.label.num'|translate}}
+              <p-sortIcon field="numero"></p-sortIcon>
+            </th>
+            <th pSortableColumn="codigo">{{'siisspolweb.fondosv.tabla.label.codigo'|translate}}
+              <p-sortIcon field="codigo"></p-sortIcon>
+            </th>
+            <th pSortableColumn="fechaCont">{{'siisspolweb.fondosv.tabla.label.fechacont'|translate}}
+              <p-sortIcon field="fechaCont" dateFormat="dd/MM/yy"></p-sortIcon>
+            </th>
+            <th pSortableColumn="aporte">{{'siisspolweb.fondosv.tabla.label.numeroregistros'|translate}}
+              <p-sortIcon field="aporte"></p-sortIcon>
+            </th>
+            <th pSortableColumn="grupo">{{'siisspolweb.fondosv.tabla.label.grupo'|translate}}
+              <p-sortIcon field="grupo"></p-sortIcon>
+            </th>
+            <th pSortableColumn="fechaLiq">{{'siisspolweb.fondosv.tabla.label.fechaliq'|translate}}
+              <p-sortIcon field="fechaLiq" dateFormat="dd/MM/yy"></p-sortIcon>
+            </th>
+            <th pSortableColumn="totalaporte">{{'siisspolweb.fondosv.tabla.label.totalaportes'|translate}}
+              <p-sortIcon field="totalaporte"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="totalinteres">{{'siisspolweb.fondosv.tabla.label.totalinteres'|translate}}
+              <p-sortIcon field="totalinteres"></p-sortIcon>
+            </th>
+            <th pSortableColumn="total">{{'siisspolweb.fondosv.tabla.label.total'|translate}}
+              <p-sortIcon field="total"></p-sortIcon>
+            </th>
+            <th>
+              {{'siisspolweb.comun.accion'|translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item.num}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.fechacont| date: 'dd/MM/yyyy'}}</td>
+            <td>{{item.registros}}</td>
+            <td>{{item.grupo}}</td>
+            <td>{{item.fechaliq}}</td>
+            <td>{{item.aporte |currency}}</td>
+            <td>{{item.interes |currency}}</td>
+            <td>{{item.total |currency}}</td>
+            <td>
+              <button mat-mini-fab
+                      appAuditoria
+                      [tabla]="'[prestacion].[registro_migracion_aportes_fondos_vivienda]'"
+                      [columna]="'id_registro_fv'"
+                      [valorId]="item.num"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-mini-fab
+                      (click)="crearNuevo(item)"
+                      color="accent"
+                      matTooltip="{{'siisspolweb.comun.tool.procesado'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>manage_history</mat-icon>
+              </button>
+              <button mat-mini-fab
+                      (click)="editarRegistro(item)"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </mat-card-content>
+  </mat-card>
+
+  <app-carga-masiva-edicion *ngIf="objMigracion  "[migracionFondos]="objMigracion"
+                            (objMigra)="objCabecera=$event"
+                            (lstMigra)="setearValorLista($event)" >
+  </app-carga-masiva-edicion>
+</div>

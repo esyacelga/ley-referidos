@@ -1,0 +1,367 @@
+<app-barra-herramientas [objBtn]="objBtnPostulante" *ngIf="tipoUsuario !== 'usuario-postulante' ? true : false"></app-barra-herramientas>
+<mat-card>
+    <mat-card-content>
+      <button 
+        *ngIf="habilitaBtnCanGua && tipoUsuario === 'usuario-postulante'"
+        (click)="limpiar()"
+        matTooltip="{{'siisspolweb.comun.tcancelar'|translate}}"
+        matTooltipPosition="below"
+        type="button" class="btn btn-warning btn-sm">
+        <i class="fas fa-ban" aria-hidden="true"></i>
+        {{"siisspolweb.comun.cancelar"|translate}}
+      </button>
+      <button type="submit"
+            *ngIf="habilitaBtnCanGua && tipoUsuario === 'usuario-postulante'"
+            (click)="guardar(objPostulante)"
+            matTooltip="{{'siisspolweb.comun.tguardar'|translate}}"
+            matTooltipPosition="below"
+            class="btn btn-success btn-sm">
+      <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+      {{"siisspolweb.comun.guardar"|translate}}</button>
+      
+    </mat-card-content>
+  </mat-card>
+<div class="ui-cuerpo-pagina">
+    <mat-card *ngIf="!objPostulante">
+        <p-table [value]="lstPostulante" styleClass="p-datatable-striped" selectionMode="single" [paginator]="true"
+            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between font-bold">
+                    {{'siisspolweb.remate.postulante.titulo'|translate}}
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="numeroJucio">{{'siisspolweb.remate.remate.numeroJucio'|translate}}
+                        <p-sortIcon field="numeroJucio"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="tipoBien">{{'siisspolweb.remate.remate.tipoBien'|translate}}
+                        <p-sortIcon field="tipoBien"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="identificacion">{{'siisspolweb.remate.postulante.identificacion'|translate}}
+                        <p-sortIcon field="identificacion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="nombreCompleto"> {{'siisspolweb.remate.postulante.nombreCompleto'|translate}}
+                        <p-sortIcon field="nombreCompleto"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="fechaPostulacion">
+                        {{'siisspolweb.remate.postulante.fechaPostulacion'|translate}}
+                        <p-sortIcon field="fechaPostulacion"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="comprobanteDeposito">
+                        {{'siisspolweb.remate.postulante.comprobanteDeposito'|translate}}
+                        <p-sortIcon field="comprobanteDeposito"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="valorOfertado" *ngIf="tipoUsuario == 'usuario-postulante' ? true : false">{{'siisspolweb.remate.postulante.valorOfertado'|translate}} 
+                        <p-sortIcon field="valorOfertado"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="esGanador">{{'siisspolweb.remate.postulante.esGanador'|translate}}
+                        <p-sortIcon field="esGanador"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="esDevuelto">{{'siisspolweb.remate.postulante.esDevuelto'|translate}}
+                        <p-sortIcon field="esDevuelto"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="cumpleRequisitos">
+                        {{'siisspolweb.remate.postulante.cumpleRequisitos'|translate}}
+                        <p-sortIcon field="cumpleRequisitos"></p-sortIcon>
+                    </th>
+                    <th>{{'siisspolweb.comun.accion'|translate}}
+
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>{{item.numeroJucio}}</td>
+                    <td>{{item.tipoBien}}</td>
+                    <td>{{item.identificacion}}</td>
+                    <td>{{item.nombreCompleto}}</td>
+                    <td>{{item.fechaPostulacion | date: 'dd/MM/YYYY'}}</td>
+                    <td>{{item.comprobanteDeposito}}</td>
+                    <td *ngIf="tipoUsuario == 'usuario-postulante' ? true : false">
+                        {{item.valorOfertado | currency}}
+                    </td>
+                    <td>{{item.esGanador==true? 'SI':'NO'}}</td>
+                    <td>{{item.esDevuelto==true? 'SI':'NO'}}</td>
+                    <td>{{item.cumpleRequisitos==true? 'SI':'NO'}}</td>
+                    <td>
+                        <button mat-mini-fab appAuditoria [tabla]="'[coactiva].[remate_postulante]'" *ngIf="tipoUsuario !== 'usuario-postulante' ? true : false"
+                            [columna]="'id_persona_tipo_subtipo_postulante'" [valorId]="item.idPersonaTipoSubtipo" color="primary"
+                            matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}" matTooltipPosition="above">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button mat-mini-fab (click)="editarRegistro(item)" color="primary" 
+                            *ngIf="(tipoUsuario !== 'usuario-postulante' && item.etapaRemate !=='6') || (item.etapaRemate =='4' && tipoUsuario == 'usuario-postulante') ? true : false"
+                            matTooltip="{{'siisspolweb.comun.editar'|translate}}" matTooltipPosition="above">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </mat-card>
+    <!--Nuevo-->
+    <mat-card *ngIf="objPostulante">
+        <mat-card *ngIf="objPostulante">
+            <mat-card-header>
+                <mat-card-title>{{'siisspolweb.remate.caracteristica.remate'|translate}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.remate.numeroJucio'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="numeroJucio" class="form-control mayuscula" type="text" matInput
+                            placeholder="" required="true" disabled>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="l-h-0x font-bold small">{{'siisspolweb.remate.remate.tipoBien'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="tipoBien" class="form-control mayuscula" type="text" matInput placeholder=""
+                            required="true" disabled>
+                    </div>
+                    <div class="col-lg-6">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.remate.descripcionBien'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <textarea [(ngModel)]="descripcionBien" class="form-control" matInput uppercase
+                            required="true" maxlength="450" rows="3" disabled></textarea>    
+                    </div>
+                    <div class="col-lg-2" *ngIf="tipoUsuario !== 'usuario-postulante' ? true : false">
+                        <button mat-mini-fab (click)="openDialog()" color="primary"
+                            matTooltip="{{'siisspolweb.comun.buscar'|translate}}" matTooltipPosition="above">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div class="line"></div>
+        <!--Formulario de registro-->
+        <mat-card *ngIf="objPostulante">
+            <mat-card-header>
+                <mat-card-title>{{'siisspolweb.remate.postulante.formulario'|translate}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.identificacion'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.identificacion" class="form-control mayuscula" type="text"
+                            [disabled]="tipoUsuario == 'usuario-postulante' ? true : false"
+                            matInput placeholder="" required="true" (change)="obtenerPersonaPorIdentificacion(objPostulante.identificacion)">
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.apellidoPaterno'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.apellidoPaterno" class="form-control" type="text" uppercase
+                            matInput placeholder="" required="true" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.apellidoMaterno'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.apellidoMaterno" class="form-control" type="text" uppercase
+                            matInput placeholder="" required="true" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.nombre'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.nombre" class="form-control" type="text" matInput uppercase
+                            placeholder="" required="true" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                    </div>
+                </div>
+                <div class="line-sm"></div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.fechaNacimiento'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <p-calendar inputId="fechaNacimiento" dateFormat="dd/mm/yy" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false"
+                            [(ngModel)]="objPostulante.fechaNacimiento" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.tipoSexo'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <select class="form-control" id="selectTramite" required [(ngModel)]="objPostulante.idTipoSexo" 
+                            [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                            <option disabled selected default>{{'siisspolweb.comun.seleccione'|translate}}</option>
+                            <option [ngValue]="i.valor" *ngFor="let i of lstCatalogoGenero">{{i.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.tipoIdentificacion'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <select class="form-control" id="selectTramite" required
+                            [(ngModel)]="objPostulante.idTipoIdentificacion" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                            <option disabled selected default>{{'siisspolweb.comun.seleccione'|translate}}</option>
+                            <option [ngValue]="i.valor" *ngFor="let i of lstCatalogoTipoIdentificacion">{{i.nombre}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.tipoCliente'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <select class="form-control" id="selectTramite" required
+                            (change)="obtenerListaRequ(objPostulante.idTipoCliente, false)"
+                            [(ngModel)]="objPostulante.idTipoCliente" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false">
+                            <option disabled selected default>{{'siisspolweb.comun.seleccione'|translate}}</option>
+                            <option [ngValue]="i.valor" *ngFor="let i of lstCatalogoTipoCliente">{{i.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="line-sm"></div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.fechaPostulacion'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <p-calendar inputId="fechaPostulacion" dateFormat="dd/mm/yy" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false"
+                            [(ngModel)]="objPostulante.fechaPostulacion" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+                    </div>
+                    <div class="col-lg-2" *ngIf="tipoUsuario == 'usuario-postulante' ? true : false">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.valorOfertado'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.valorOfertado" class="form-control" type="text"                            
+                            currencyMask [options]="{ allowNegative: false,prefix: '$ ', thousands: ',', decimal: '.', precision: 2  }"
+                            matInput placeholder="" required="true" maxlength="20" [disabled]="tipoUsuario !== 'usuario-postulante' ? true : false"
+                            (keyup.enter)="verificarValorMinimo(objPostulante.valorOfertado, objPostulante.valorMinimo)"
+                            (keydown.tab)="verificarValorMinimo(objPostulante.valorOfertado, objPostulante.valorMinimo)"
+                            (blur)="verificarValorMinimo(objPostulante.valorOfertado, objPostulante.valorMinimo)"
+                            matTooltip="{{'siisspolweb.loading.remate.postulante.msmValidarMonto'|translate}}">
+                    </div>
+                    <div class="col-lg-2" *ngIf="tipoUsuario == 'usuario-postulante' ? true : false">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.comprobanteDeposito'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.comprobanteDeposito" class="form-control" uppercase
+                            type="text" matInput placeholder="" required="true" [disabled]="tipoUsuario !== 'usuario-postulante' ? true : false">
+                    </div>
+                    <!--Comprobante PDF-->                    
+                    <div class="col-lg-5" *ngIf="tipoUsuario == 'usuario-postulante' ? true : false">                        
+                        <label class="l-h-0x font-bold small"></label>
+                        <div class="pull-right card flex justify-content-center">
+                            <p-fileUpload uploadLabel="4545" mode="basic" chooseLabel="{{nombreArchivoComprobante}}"
+                                name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true"
+                                accept=".pdf, .jpg, .png" (onUpload)="cargarInfoComprobante($event)"></p-fileUpload>
+                        </div>
+                        <button mat-raised-button matTooltip="{{'siisspolweb.label.documento.documento.adjunto'|translate}}"
+                                mat-button color="primary" (click)="descargarInfoComprobante(objPostulante)"
+                                aria-label="Button that displays a tooltip when focused or hovered over">
+                                <mat-icon>download</mat-icon>
+                                {{"siisspolweb.label.comun.descargar"|translate}}
+                        </button>
+                    </div>
+                </div>    
+                <div class="line-sm"></div>
+                <div class="row">    
+                    <div class="col-lg-2">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.esGanador'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <label class="i-switch i-switch-md bg-primary m-t-xs m-r">
+                            <input type="checkbox" [(ngModel)]="objPostulante.esGanador" disabled><i></i>
+                        </label>
+                    </div>
+                    <div class="col-lg-2">
+                        <label
+                            class="l-h-0x font-bold small">{{'siisspolweb.remate.postulante.esDevuelto'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <label class="i-switch i-switch-md bg-primary m-t-xs m-r">
+                            <input type="checkbox" [(ngModel)]="objPostulante.esDevuelto" disabled><i></i>
+                        </label>
+                    </div>
+                    <div class="col-lg-6">
+                        <div>
+                            <label class="l-h-0x font-bold small">{{'siisspolweb.comun.direccion'|translate}}</label>
+                            <div class="line-sm"></div>
+                            <textarea [(ngModel)]="objPostulante.direccion" class="form-control" matInput uppercase
+                                [disabled]="tipoUsuario == 'usuario-postulante' ? true : false"
+                                placeholder="" required="true" maxlength="195" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="l-h-0x font-bold small">{{'siisspolweb.comun.celular'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.celular" class="form-control" type="text" matInput
+                            placeholder="" required="true" mask="0000000000"/>
+                    </div>
+                </div>
+                <div class="line-sm"></div>
+                <div class="row">            
+                    <div class="col-lg-2">
+                        <label class="l-h-0x font-bold small">{{'siisspolweb.comun.telefono'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.telefono" class="form-control" type="text" matInput
+                            placeholder="" required="true" mask="000000000"/>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="l-h-0x font-bold small">{{'siisspolweb.comun.correo'|translate}}</label>
+                        <div class="line-sm"></div>
+                        <input [(ngModel)]="objPostulante.correo" class="form-control" type="text" matInput
+                            placeholder="" required="true"/>
+                    </div>
+                    <div class="col-lg-3">
+                        <div>
+                            <label class="l-h-0x font-bold small">{{'siisspolweb.remate.remate.ubicacion'|translate}}</label>
+                            <div class="line-sm"></div>
+                            <input [(ngModel)]="descripcionUbicacion" class="form-control" type="text" matInput uppercase
+                                placeholder="" required="true" disabled>
+        
+                        </div>
+                    </div>
+                    <div class="col-lg-3" *ngIf="tipoUsuario !== 'usuario-postulante' ? true : false">
+                        <button mat-mini-fab (click)="openDialogUbicacion()" color="primary"
+                            matTooltip="{{'siisspolweb.comun.buscar'|translate}}" matTooltipPosition="above">
+                            <mat-icon>search</mat-icon>
+                        </button>                        
+                    </div>
+                </div>    
+                <div class="line-sm"></div>
+            </mat-card-content>
+        </mat-card>
+        <div class="line"></div>
+        <mat-card *ngIf="objPostulante">
+            <mat-card-header>
+                <mat-card-title>{{'siisspolweb.remate.postulante.lstRequisitos'|translate}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p-table [value]="lstCatalogoRequerimiento" styleClass="p-datatable-striped" selectionMode="single"
+                    [paginator]="false" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="nombre">{{'siisspolweb.remate.postulante.requisitos'|translate}}
+                            </th>
+                            <th pSortableColumn="checked">{{'siisspolweb.remate.postulante.cumple'|translate}}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>{{item.descripcion}}</td>
+                            <td>
+                                <label class="i-checks i-checks-sm">
+                                    <input type="checkbox" [(ngModel)]="item.seleccionado" [disabled]="tipoUsuario == 'usuario-postulante' ? true : false"/><i></i>
+
+                                </label>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </mat-card-content>
+
+        </mat-card>
+
+        <div class="line"></div>
+    </mat-card>
+</div>

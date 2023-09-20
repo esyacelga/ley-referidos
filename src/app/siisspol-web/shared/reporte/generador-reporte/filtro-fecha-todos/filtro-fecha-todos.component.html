@@ -1,0 +1,22 @@
+<div class="row">
+  <mat-slide-toggle [checked]="false" (change)="selecionarTodos()">Todos</mat-slide-toggle>
+  <div class="line-lg"></div>
+  <mat-form-field>
+    <mat-label>{{'siisspolweb.comun.label.fecha.inicio'|translate}}</mat-label>
+    <input id="incio" matInput [matDatepicker]="picker01" [disabled]="bandera"
+           (ngModelChange)="setearFechaInicial($event)"
+           [(ngModel)]="initDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker01"></mat-datepicker-toggle>
+    <mat-datepicker #picker01></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{'siisspolweb.comun.label.fecha.fin'|translate}}</mat-label>
+    <input id="fin" matInput [matDatepicker]="picker02" [disabled]="bandera"
+           (ngModelChange)="setearFechaFinal($event)"
+           [(ngModel)]="endDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker02"></mat-datepicker-toggle>
+    <mat-datepicker #picker02></mat-datepicker>
+  </mat-form-field>
+</div>

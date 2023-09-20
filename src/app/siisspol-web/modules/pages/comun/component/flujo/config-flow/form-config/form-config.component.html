@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm-6">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{'siisspolweb.comun.label.id'|translate}}</mat-label>
+      <input matInput disabled="true" [(ngModel)]="objPersistencia.idProcesoConfiguracion" placeholder="">
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-6">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{'siisspolweb.comun.label.id.padre'|translate}}</mat-label>
+      <input matInput disabled="true" [(ngModel)]="objPersistencia.idProcesoConfiguracionPadre" placeholder="">
+    </mat-form-field>
+  </div>
+  <div class="col-sm-6">
+    <mat-form-field appearance="fill">
+      <mat-label>{{'siisspolweb.label.flujo.versiones'|translate}}</mat-label>
+      <mat-select name="food" [(ngModel)]="objPersistencia.idProcesoFlujoVersion">
+        <mat-option *ngFor="let item of lstVersiones" [value]="item.idProcesoFlujoVersion">
+          {{item.descripcion +' ver: '+ item.version}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-12">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{'siisspolweb.label.comun.codigo'|translate}}</mat-label>
+      <input matInput [(ngModel)]="objPersistencia.codigo" placeholder="" maxlength="20">
+    </mat-form-field>
+  </div>
+  <div class="col-sm-12">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{'siisspolweb.persona.label.nombre'|translate}}</mat-label>
+      <input matInput [(ngModel)]="objPersistencia.nombre" placeholder="" maxlength="250">
+    </mat-form-field>
+    <div class="col-sm-12">
+      <mat-form-field class="example-full-width">
+        <mat-label>{{'siisspolweb.comun.descripcion'|translate}}</mat-label>
+        <input matInput [(ngModel)]="objPersistencia.descripcion" placeholder="" maxlength="250">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

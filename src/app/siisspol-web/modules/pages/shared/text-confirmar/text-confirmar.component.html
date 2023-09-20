@@ -1,0 +1,48 @@
+<app-dialog-title></app-dialog-title>
+<mat-dialog-content class="modal-content-custom">
+  <div class="alert alert-warning" role="alert">
+    {{mensaje}}
+  </div>
+
+  <h3 class="center"><strong class="center">CONSENTIMIENTO INFORMADO</strong></h3>
+  <p class="align-content-center">
+    De conformidad con lo dispuesto en la Ley Orgánica de Protección de Datos y demás normas que las adicionen o
+    modifiquen, autorizo expresamente al Instituto de Seguridad Social de la Policía Nacional, ISSPOL, a realizar el
+    tratamiento de mis datos personales suministrados de manera forma consentida, voluntaria y confidencial
+    exclusivamente para la gestión de la correspondiente denuncia, investigación, queja, reclamo, comunicación y demás
+    procedimientos concomitantes con dicha finalidad.
+
+    Para estos fines, declaro que he tenido acceso previamente a la Política de Privacidad del Instituto de Seguridad
+    Social de la Policía Nacional ISSPOL y demás normativa correspondiente, la cual estará disponible en el sitio web
+    del ISSPOL  https://isspol.org.ec/wp-content/uploads/2023/06/2023-05-16_Lineamientos_Proteccion_Datos_Personales_v0.pdf, y que
+    conozco que podré ejercer los derechos a conocer, actualizar, rectificar o suprimir mis datos personales de las
+    bases de datos del Instituto de Seguridad Social de la Policía Nacional, ISSPOL o a revocar la presente
+    autorización, mediante comunicación escrita al correo: contacto@isspol.org.ec
+
+  </p>
+  <h3><strong>CLÁSULA DE PROTECCIÓN DE DATOS PERSONALES CANAL DE DENUNCIAS</strong></h3>
+  <p>
+    Le informamos que sus datos personales enviados a través del canal de denuncias del Instituto de Seguridad Social de
+    la Policía Nacional, son tratados y gestionados conforme con el ordenamiento jurídico vigente en materia de
+    protección de datos personales y son utilizados de manera confidencial exclusivamente para la gestión de la
+    correspondiente denuncia y la posible investigación; por tanto, no cedemos ni comunicamos a ningún tercero sus
+    datos, excepto en los casos legalmente previstos o en caso de que usted lo autorice de forma expresa.
+
+    El envío referido de los datos personales constituye el consentimiento expreso a su tratamiento, al único efecto
+    para el que han sido facilitados de carácter revocable y sin efectos retroactivos.
+
+    En cualquier momento usted puede ejercer sus derechos de acceso, rectificación, supresión, oposición y los restantes
+    establecidos en la correspondiente normativa, en los términos establecidos legalmente.
+
+  </p>
+</mat-dialog-content>
+
+
+<mat-dialog-actions class="modal-footer" align="end">
+  <button mat-dialog-close (click)="onAccept()"
+          class="btn btn-primary">{{'siisspolweb.comun.aceptar'|translate}}</button>
+  <button mat-dialog-close (click)="onCancel()"
+          class="btn btn-warning">{{'siisspolweb.comun.cancelar'|translate}}</button>
+</mat-dialog-actions>
+
+

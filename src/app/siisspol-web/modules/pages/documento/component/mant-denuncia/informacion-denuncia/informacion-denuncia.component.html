@@ -1,0 +1,112 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.documento.referencia'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.numeroReferencia}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.documento.tipo.delito'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.tipoDelito}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.documento.tipo.denuncia'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.tipoDenuncia}}" class="form-control">
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="row">
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.seleccion.tipo.persona.denunciante'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.tipoDenunciante}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.persona.label.identificacion'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.identificacion}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.persona.label.nombre'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.nombrePersona}}" class="form-control">
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="row">
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.correo'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.correo}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.numero'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.telefono}}" class="form-control">
+      </div>
+      <div class="col-lg-4">
+        <label class="form-label">{{'siisspolweb.label.origen'|translate}}:</label>
+        <input disabled="true" value="{{objDenuncia.origen}}" class="form-control">
+      </div>
+      <div class="line"></div>
+      <div class="row">
+        <div></div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <mat-form-field appearance="fill">
+        <mat-label>{{'siisspolweb.label.documento.estado'|translate}}</mat-label>
+        <mat-select name="food"
+                    (selectionChange)="cargarDescripcion(objAdjuntoDirectiva.estadoPersinstencia)"
+                    [(ngModel)]="objAdjuntoDirectiva.estadoPersinstencia">
+          <mat-option *ngFor="let item of lstConfiguracion"
+                      [value]="item.codigo">
+            {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button (click)="abrirPanel==false ? abrirPanel=true:abrirPanel=false"
+            matTooltip="{{'siisspolweb.tooltip.comun.agegar'|translate}}">{{'siisspolweb.label.comun.agregar'|translate}}</button>
+  </mat-card-content>
+</mat-card>
+
+<div class="line-sm"></div>
+
+<app-adjunto-denuncia *ngIf="abrirPanel && objDenuncia.idDenuncia "
+                      [idDenuncia]="objDenuncia.idDenuncia"
+                      (adjunto)="obtenerObjetoAdjunto($event)"
+                      [idEstadoDenuncia]="'INV'">
+</app-adjunto-denuncia>
+
+<div>
+  <mat-card *ngIf="lstAdjunto && lstAdjunto.length>0">
+    <mat-card-content>
+      <table mat-table [dataSource]="lstAdjunto">
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>{{'siisspolweb.label.estado'|translate}}</th>
+          <td mat-cell *matCellDef="let item">{{ item.estado }}</td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>{{'siisspolweb.label.documento.descripcion'|translate}}</th>
+          <td mat-cell *matCellDef="let item">{{ item.nombreArchivo }}</td>
+        </ng-container>
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef>{{'siisspolweb.label.documento.descripcion'|translate}}</th>
+          <td mat-cell *matCellDef="let item">
+            <button type="button" (click)="descargarImagen(item)"
+                    class="btn btn-info">{{'siisspolweb.label.comun.descargar'|translate}}
+
+            </button>
+            <button type="button" (click)="eliminarAdjunto(item)"
+                    class="btn btn-danger">
+              {{'siisspolweb.label.comun.eliminar'|translate}}
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['estado', 'descripcion','accion']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['estado', 'descripcion','accion'];"></tr>
+      </table>
+      <div class="line"></div>
+      <button mat-raised-button (click)="abrirPanel==false ? abrirPanel=true:abrirPanel=false"
+              color="primary"
+              matTooltip="{{'siisspolweb.tooltip.comun.agegar'|translate}}">{{'siisspolweb.label.comun.agregar'|translate}}</button>
+    </mat-card-content>
+  </mat-card>
+</div>

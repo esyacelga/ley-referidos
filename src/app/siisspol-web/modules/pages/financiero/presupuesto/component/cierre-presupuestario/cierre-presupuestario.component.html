@@ -1,0 +1,96 @@
+<!-- Barra de estados -->
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+
+<!-- Contenido -->
+<div>
+  <div *ngIf="!objCierrePresupuestario">
+    <!-- Usuario Seleccionado -->
+    <mat-form-field appearance="outline" >
+      <mat-label>
+        <mat-icon>search</mat-icon>
+        Seleccione un Usuario
+      </mat-label>
+      <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="objUsuario">
+        <mat-option *ngFor="let item of lstInformacionUsuario" [value]="item">
+          {{item.idUsuario}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Listado Agregados -->
+    <mat-card>
+      <mat-card-content>
+        <p-table [value]="lstCierrePresupuestario"
+                 styleClass="p-datatable-striped" selectionMode="single"
+                 [rowsPerPageOptions]="[10,25,0]">
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              {{'Listado de cierre presupuestario, cobrado ó pagado por procesar.'|translate}}
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="boletinNegocio">{{'Boletín Registro'|translate}}
+                <p-sortIcon field="boletinNegocio"></p-sortIcon>
+              </th>
+              <th pSortableColumn="boletinCierre">{{'Boletín Cierre'|translate}}
+                <p-sortIcon field="boletinCierre"></p-sortIcon>
+              </th>
+              <th>{{'Tipo Movimiento'|translate}}</th>
+              <th>
+                {{'siisspolweb.comun.accion'|translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>{{item.boletinNegocio}}</td>
+              <td>{{item.boletinCierre}}</td>
+              <td>{{item.labelTipoMovimiento }}</td>
+              <td>
+                <button mat-mini-fab
+                        (click)="editarRegistro(item)"
+                        color="primary"
+                        matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                        matTooltipPosition="above">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Ventana Agregar -->
+  <mat-card *ngIf="objCierrePresupuestario">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'Boletín registro'|translate}}</mat-label>
+            <input matInput placeholder="Ejem. APS000089" [(ngModel)]="objCierrePresupuestario.boletinNegocio"
+                   (keydown)="onKeypressEvent($event)">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'Boletín cierre'|translate}}</mat-label>
+            <input matInput placeholder="Ejem. CIS000597" [(ngModel)]="objCierrePresupuestario.boletinCierre"
+                   (keydown)="onKeypressEvent($event)">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-slide-toggle class="font-bold"
+                            [(ngModel)]="objCierrePresupuestario.npEstado">{{'Cobrado'|translate}}</mat-slide-toggle>
+          <div class="line"></div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

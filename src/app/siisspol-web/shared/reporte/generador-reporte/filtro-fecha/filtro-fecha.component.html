@@ -1,0 +1,20 @@
+<div class="row">
+  <mat-form-field>
+    <mat-label>{{'siisspolweb.comun.label.fecha.inicio'|translate}}</mat-label>
+    <input id="incio" matInput [matDatepicker]="picker01"
+           (ngModelChange)="setearFechaInicial($event)"
+           [(ngModel)]="initDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker01"></mat-datepicker-toggle>
+    <mat-datepicker #picker01></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>{{'siisspolweb.comun.label.fecha.fin'|translate}}</mat-label>
+    <input id="fin" matInput [matDatepicker]="picker02"
+           (ngModelChange)="setearFechaFinal($event)"
+           [(ngModel)]="endDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker02"></mat-datepicker-toggle>
+    <mat-datepicker #picker02></mat-datepicker>
+  </mat-form-field>
+</div>

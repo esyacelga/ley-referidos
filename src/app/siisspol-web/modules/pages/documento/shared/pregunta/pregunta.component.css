@@ -1,0 +1,12 @@
+h2{
+  display:block;
+  font-family: Barlow-semi-Thin;
+}
+mat-radio-button{
+  font-family: Barlow-semi-Thin;
+  padding-right: 10px;
+}
+
+.mat-radio-label-content{
+  padding-right: 10px;
+}

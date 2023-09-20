@@ -1,0 +1,11 @@
+<mat-card>
+  <div class="col-sm">
+    <div class="pull-right card flex justify-content-center">
+      <!--<p-toast></p-toast>-->
+      <!--<div *ngIf="imagenAdjunto"><strong>{{imagenAdjunto.name}}</strong></div>-->
+      <p-fileUpload uploadLabel="4545" mode="basic" chooseLabel="{{nombreArchivo}}" name="demo[]"
+                    url="https://www.primefaces.org/cdn/api/upload.php" [auto]="true" accept=".pdf, .jpg, .png"
+                    (onUpload)="onFileUpload($event)"></p-fileUpload>
+    </div>
+  </div>
+</mat-card>

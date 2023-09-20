@@ -1,0 +1,25 @@
+<mat-card *ngIf="objMigracion">
+  <div class="row">
+    <div class="col-lg-4">
+      <label class="form-label">{{'siisspolweb.fondosv.form.label.totalregistros'|translate}}:</label>
+      <input disabled="true" value="{{objMigracion.registros}}" class="form-control">
+    </div>
+    <div class="col-lg-4">
+      <label class="form-label">{{'siisspolweb.fondosv.form.label.grupo'|translate}}:</label>
+      <input disabled="true" value="{{objMigracion.grupo}}" class="form-control">
+    </div>
+    <div class="col-lg-4">
+      <label class="form-label">{{'siisspolweb.fondosv.form.label.totalaporte'|translate}}:</label>
+      <input disabled="true" value="{{objMigracion.aporte}}" class="form-control">
+    </div>
+    <div class="col-lg-4">
+      <label class="form-label">{{'siisspolweb.fondosv.form.label.totalinteres'|translate}}:</label>
+      <input disabled="true" value="{{objMigracion.interes}}" class="form-control">
+    </div>
+    <div class="col-lg-4">
+      <label class="form-label">{{'siisspolweb.fondosv.form.label.totalinteres'|translate}}:</label>
+      <input disabled="true" value="{{objMigracion.total}}" class="form-control">
+    </div>
+  </div>
+  <div class="line"></div>
+</mat-card>

@@ -1,0 +1,23 @@
+.verde-claro {
+  background-color: lightgreen;
+}
+.verde-oscuro {
+  background-color: green;
+  color: white; /* Cambiar el color del texto si es verde oscuro */
+}
+
+.amarillo {
+  background-color: yellow;
+}
+
+.amarillo-oscuro {
+  background-color: orange;
+}
+
+.rojo {
+  background-color: red;
+  color: white; /* Cambiar el color del texto si es rojo */
+}
+.campo-vacio {
+
+}

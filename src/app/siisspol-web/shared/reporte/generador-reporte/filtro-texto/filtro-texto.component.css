@@ -1,0 +1,10 @@
+mat-form-field {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo del botón */
+button.mat-icon-button {
+  margin-left: 8px; /* Espacio entre el input y el botón */
+  height: 100%; /* Igualar altura con el input */
+}

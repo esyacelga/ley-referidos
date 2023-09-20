@@ -1,0 +1,13 @@
+<app-dialog-title titulo="{{objConfirmacion.titulo}}"></app-dialog-title>
+
+
+<mat-dialog-content class="mat-typography">
+  <p  style="font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px">
+    {{objConfirmacion.mensaje}}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions class="modal-footer" align="center">
+  <button type="button" class="btn btn-warning" mat-dialog-close >{{"siisspolweb.comun.cancelar"|translate}}</button>
+  <button type="button" class="btn btn-success" mat-dialog-close
+          (click)="setearOpcion(objConfirmacion)">{{'siisspolweb.comun.aceptar'|translate}}</button>
+</mat-dialog-actions>

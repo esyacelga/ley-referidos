@@ -1,0 +1,11 @@
+.boton-copiar {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

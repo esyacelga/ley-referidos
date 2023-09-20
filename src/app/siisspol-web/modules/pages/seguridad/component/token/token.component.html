@@ -1,0 +1,71 @@
+
+<p-table [value]="lstToken"
+         styleClass="p-datatable-striped" selectionMode="single"
+         [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+         [rowsPerPageOptions]="[10,25,50]"
+         [globalFilterFields]="['tipoToken']"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between">
+
+      {{'siisspolweb.comun..grid.seguridad.token.titulo'|translate}}
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+
+      <th pSortableColumn="idToken">{{'siisspolweb.comun.label.id'|translate}}
+        <p-sortIcon field="idToken"></p-sortIcon>
+      </th>
+      <th pSortableColumn="identificacion">{{'siisspolweb.persona.label.identificacion'|translate}}
+        <p-columnFilter type="text" field="identificacion" display="menu"></p-columnFilter>
+        <p-sortIcon field="identificacion"></p-sortIcon>
+      </th>
+      <th pSortableColumn="apellidoPaterno">{{'siisspolweb.persona.label.apellidoPaterno'|translate}}
+        <p-sortIcon field="apellidoPaterno"></p-sortIcon>
+      </th>
+      <th pSortableColumn="apellidoMaterno">{{'siisspolweb.persona.label.apellidoMaterno'|translate}}
+        <p-sortIcon field="apellidoMaterno"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nombrePersona">{{'siisspolweb.persona.label.nombre'|translate}}
+        <p-sortIcon field="nombrePersona"></p-sortIcon>
+      </th>
+      <th pSortableColumn="tipoToken">{{'siisspolweb.seguridad.label.tipoToken'|translate}}
+        <p-columnFilter type="text" field="tipoToken" display="menu"></p-columnFilter>
+        <p-sortIcon field="tipoToken"></p-sortIcon>
+      </th>
+      <th>{{'siisspolweb.comun.accion'|translate}}
+
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{item.idToken}}</td>
+      <td>{{item.identificacion}}</td>
+      <td>{{item.apellidoPaterno}}</td>
+      <td>{{item.apellidoMaterno}}</td>
+      <td>{{item.nombrePersona}}</td>
+      <td>{{item.tipoToken }}</td>
+      <td>
+        <!--<button mat-mini-fab
+                appAuditoria
+                [tabla]="'[pmedicas].[permiso_pago_contabilidad]'"
+                [columna]="'id_permiso_pago_contabilidad'"
+                [valorId]="item.idPermisoPagoContabilidad"
+                color="primary"
+                matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                matTooltipPosition="above">
+          <mat-icon>visibility</mat-icon>
+        </button>-->
+        <button mat-mini-fab
+                (click)="editarRegistro(item)"
+                color="accent"
+                matTooltip="{{'siisspolweb.comun.tool.procesado'|translate}}"
+                matTooltipPosition="above">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,11 @@
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+<app-grid-flujo-version (objFVersion)="objFlujoVersion=$event"
+                        *ngIf="objFlujoVersion.idProcesoFlujo==''"
+></app-grid-flujo-version>
+
+<app-form-flujo-version
+  *ngIf="objFlujoVersion.idProcesoFlujo!=''"
+  [flujoVersion]="objFlujoVersion"
+  (objBarraHerramientas)="objBtn=$event"
+  (perstFlujoVersion)="objFlujoVersion=$event"
+></app-form-flujo-version>

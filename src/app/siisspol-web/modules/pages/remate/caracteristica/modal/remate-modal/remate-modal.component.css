@@ -1,0 +1,23 @@
+.i-checks {
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.i-checks-sm{
+    input{
+      &:checked + i{
+        &:before{
+          left: 3px;
+          top: 3px;
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+    > i{
+      width: 16px;
+      height: 16px;
+      margin-left: -18px;
+      margin-right: 6px;
+    }
+  }

@@ -1,0 +1,122 @@
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+<div class="ui-cuerpo-pagina">
+  <mat-card *ngIf="!objTipoDenuncia">
+    <mat-card-content>
+      <p-table [value]="lstTipoDenuncia"
+               styleClass="p-datatable-striped" selectionMode="single"
+               [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            {{'siisspolweb.label.documento.administracion.tipoDenuncia'|translate}}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+
+            <th pSortableColumn="idCatalogo">{{'siisspolweb.comun.label.id'|translate}}
+              <p-sortIcon field="idCatalogo"></p-sortIcon>
+            </th>
+            <th pSortableColumn="nombre">{{'siisspolweb.persona.label.nombre'|translate}}
+              <p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="descripcion">{{'siisspolweb.label.documento.descripcion'|translate}}
+              <p-sortIcon field="descripcion"></p-sortIcon>
+            </th>
+            <th pSortableColumn="codigo">{{'siisspolweb.label.documento.codigo'|translate}}
+              <p-sortIcon field="codigo"></p-sortIcon>
+            </th>
+            <th pSortableColumn="estado">{{'siisspolweb.label.estado'|translate}}
+              <p-sortIcon field="estado"></p-sortIcon>
+            </th>
+            <th>
+              {{'siisspolweb.comun.accion'|translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item.idCatalogo}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.estado | toBoolean}}</td>
+            <td>
+              <button mat-mini-fab
+                      appAuditoria
+                      [tabla]="'[documento].[tipo_denuncia]'"
+                      [columna]="'id_tipo_denuncia'"
+                      [valorId]="item.idCatalogo"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-mini-fab
+                      (click)="editarRegistro(item)"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="objTipoDenuncia">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'siisspolweb.persona.label.nombre'|translate}}</mat-label>
+            <input matInput placeholder="Ejem. 172XXXXXXX" [(ngModel)]="objTipoDenuncia.nombre">
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <mat-label>{{'siisspolweb.label.documento.descripcion'|translate}}</mat-label>
+              <!--<input matInput placeholder="Ejem. 172XXXXXXX" [(ngModel)]="objTipoDenuncia.descripcion">-->
+              <textarea matInput [(ngModel)]="objTipoDenuncia.descripcion" maxlength="1000"
+                        placeholder="{{'siisspolweb.label.ingrese.echos'|translate}}"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'siisspolweb.label.documento.codigo'|translate}}</mat-label>
+            <input matInput placeholder="Ejem. 172XXXXXXX" [(ngModel)]="objTipoDenuncia.codigo">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+          <mat-slide-toggle class="font-bold"
+                            [(ngModel)]="objTipoDenuncia.npEstado">{{'siisspolweb.label.estado'|translate}}</mat-slide-toggle>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <!--    <div class="line"></div>
+          <div class="col-lg-6">
+            <mat-slide-toggle class="font-bold"
+                              [(ngModel)]="objTipoDenuncia.descripcion">{{'siisspolweb.comun.nacional'|translate}}</mat-slide-toggle>
+            <div class="line"></div>
+          </div>
+          <div class="col-lg-6">
+            <mat-slide-toggle class="font-bold"
+                              [(ngModel)]="objTipoDenuncia.codigo">{{'siisspolweb.comun.nacional'|translate}}</mat-slide-toggle>
+            <div class="line"></div>
+          </div>-->
+    </mat-card-content>
+  </mat-card>
+</div>

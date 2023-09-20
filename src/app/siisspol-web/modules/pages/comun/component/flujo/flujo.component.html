@@ -1,0 +1,7 @@
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+<app-form-flujo *ngIf="idProcesoFlujo!=''" [idFlujo]="idProcesoFlujo" (barraHerramientas)="objBtn=$event">
+
+</app-form-flujo>
+<app-grid-flujo *ngIf="idProcesoFlujo==''" (idProcesoFlujo)="idProcesoFlujo=$event">
+
+</app-grid-flujo>

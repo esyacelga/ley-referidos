@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="row">
+        <div class="col-lg-6 form-group">
+          <label for="emailHelp1">{{'siisspolweb.label.flujo.version'|translate}}</label>
+          <input type="email" class="form-control"
+                 id="emailHelp1" aria-describedby="emailHelp"
+                 [(ngModel)]="objFlujoVersion.version"
+                 placeholder="{{'siisspolweb.label.flujo.version.placeholder'|translate}}">
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="row">
+        <div class="col-lg-6  form-group">
+          <label for="emailHelp2">{{'siisspolweb.comun.descripcion'|translate}}</label>
+          <input type="email" class="form-control" id="emailHelp2" aria-describedby="emailHelp"
+                 [(ngModel)]="objFlujoVersion.descripcion"
+                 placeholder="{{'siisspolweb.label.flujo.descripcion.placeholder'|translate}}">
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="row">
+        <div class="col-sm">
+          <mat-form-field appearance="fill">
+            <mat-label>{{'siisspolweb.comun.label.flujo'|translate}}</mat-label>
+            <mat-select name="food" [(ngModel)]="objFlujoVersion.idProcesoFlujo">
+              <mat-option *ngFor="let item of lstFlujo" [value]="item.idProcesoFlujo">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-slide-toggle
+            [(ngModel)]="objFlujoVersion.estado">{{'siisspolweb.remate.remate.estado'|translate}}</mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

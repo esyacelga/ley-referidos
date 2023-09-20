@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.comun.anio'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control" type="number" matInput
+           [(ngModel)]="objPersistencia.anio"
+           placeholder="" required="true">
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.comun.descripcion'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control" type="text" matInput
+           [(ngModel)]="objPersistencia.detalle" maxlength="250"
+           placeholder="" required="true">
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.label.poa.codigo.presupuesto'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control"
+           type="text" matInput maxlength="50"
+           [(ngModel)]="objPersistencia.codigoPresupuesto"
+           placeholder="" required="true">
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.label.poa.presupuesto.inicial'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control" type="text" matInput
+           currencyMask
+           [(ngModel)]="objPersistencia.presupuestoInicial"
+           [options]="{ allowNegative: false,prefix: '$ ', thousands: ',', decimal: '.', precision: 2  }"
+           placeholder="" required="true">
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.label.poa.presupuesto.disponible'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control" type="text" matInput
+           currencyMask
+           [(ngModel)]="objPersistencia.presupuestoDisponible"
+           [options]="{ allowNegative: false,prefix: '$ ', thousands: ',', decimal: '.', precision: 2  }"
+           placeholder="" required="true">
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <label
+      class="l-h-0x font-bold small">{{'siisspolweb.label.poa.presupuesto.reformado'|translate}}</label>
+    <div class="line-sm"></div>
+    <input class="form-control" type="text" matInput
+           currencyMask
+           [(ngModel)]="objPersistencia.presupuestoReformado"
+           [options]="{ allowNegative: false,prefix: '$ ', thousands: ',', decimal: '.', precision: 2  }"
+           placeholder="" required="true">
+  </div>
+</div>

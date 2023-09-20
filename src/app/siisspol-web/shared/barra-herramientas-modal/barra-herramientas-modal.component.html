@@ -1,0 +1,17 @@
+<button
+  matTooltip="{{'siisspolweb.comun.tcancelar'|translate}}"
+  matTooltipPosition="below"
+  (click)="cancelar('CANCELAR')"
+  type="button" class="btn btn-warning btn-sm"
+>
+  <i class="fas fa-ban" aria-hidden="true"></i>
+  {{"siisspolweb.comun.cancelar"|translate}}
+</button>
+<button type="submit"
+        (click)="registrar('GUARDAR')"
+        matTooltip="{{'siisspolweb.comun.tguardar'|translate}}"
+        matTooltipPosition="below"
+        class="btn btn-success btn-sm"
+>
+  <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+  {{"siisspolweb.comun.guardar"|translate}}</button>

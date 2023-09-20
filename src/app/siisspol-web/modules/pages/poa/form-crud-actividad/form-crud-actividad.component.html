@@ -1,0 +1,166 @@
+<mat-card>
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.actividades'|translate}}</label>
+        <input class="form-control" type="text"
+               matInput
+               [(ngModel)]="objetoPantalla.actividadesPlanAccion"
+               placeholder="" required="true">
+
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.amenaza'|translate}}</label>
+        <input class="form-control" type="text"
+               matInput
+               [(ngModel)]="objetoPantalla.amenazaRiesgo"
+               placeholder="" required="true">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.posibilidad'|translate}}</label>
+        <!--<input class="form-control" type="number" matInput
+               placeholder="" required="true">-->
+        <select class="form-control form-select"
+                (ngModelChange)="detectarCambio()"
+                id="posibilidad" [(ngModel)]="objetoPantalla.probabilidad">
+          <option selected>{{'siisspolweb.label.poa.seleccione'|translate}}</option>
+          <option value="1">01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+          <option value="4">04</option>
+          <option value="5">05</option>
+        </select>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.impacto'|translate}}</label>
+        <select class="form-control form-select"
+                (change)="detectarCambio()"
+                [(ngModel)]="objetoPantalla.impacto"
+        >
+          <option selected>{{'siisspolweb.label.poa.seleccione'|translate}}</option>
+          <option value="1">01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+          <option value="4">04</option>
+          <option value="5">05</option>
+        </select>
+
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.evaluacion'|translate}}</label>
+        <input class="form-control" type="number"
+               matInput disabled="true"
+               [(ngModel)]="objetoPantalla.evaluacion"
+               placeholder="" required="true">
+      </div>
+      <!--[ngStyle]="{ 'background-color': 'red' }"-->
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.nivel'|translate}}</label>
+        <input class="form-control" type="text"
+               matInput disabled="true"
+               [ngClass]="objetoPantalla.nivelColor"
+               [(ngModel)]="objetoPantalla.nivel"
+               placeholder="" required="true">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.tipo.control'|translate}}</label>
+        <input class="form-control" type="text"
+               matInput disabled="true"
+               [(ngModel)]="objetoPantalla.tipoControl"
+               placeholder="" required="true">
+      </div>
+
+
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.responsable'|translate}}</label>
+        <input class="form-control" type="text" matInput
+               placeholder="" required="true">
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.presupuesto.inicial'|translate}}</label>
+        <input class="form-control" type="text"
+               matInput
+               [(ngModel)]="objetoPantalla.presupuestoInicial"
+               currencyMask
+               [options]="{ allowNegative: false,prefix: '$ ', thousands: ',', decimal: '.', precision: 2  }"
+               placeholder="" required="true">
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.cumplimiento'|translate}}</label>
+        <input class="form-control" type="text" matInput
+               [(ngModel)]="objetoPantalla.cumplimiento"
+               [ngClass]="objetoPantalla.cumplimientoColor"
+               disabled="true"
+               placeholder="" required="true">
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.fecha.maxima.ejecucion'|translate}}</label>
+        <p-calendar inputId="fechaMaximaEjecucion" dateFormat="dd/mm/yy" (ngModelChange)="detectarCambio()"
+                    [(ngModel)]="objetoPantalla.fechaMaximaEjecucion" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.fecha.certificacion'|translate}}</label>
+        <p-calendar inputId="certificacion" dateFormat="dd/mm/yy" (ngModelChange)="detectarCambio()"
+                    [(ngModel)]="objetoPantalla.fechaCertificacionPoa" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+
+      </div>
+
+      <div class="col-sm-12 col-md-3 col-lg-3">
+        <label
+          class="l-h-0x font-bold small">{{'siisspolweb.label.poa.trimestre'|translate}}</label>
+        <select class="form-control form-select"
+                (change)="detectarCambio()"
+                [(ngModel)]="objetoPantalla.trimestre"
+        >
+          <option selected>{{'siisspolweb.label.poa.seleccione'|translate}}</option>
+          <option value="1">{{'siisspolweb.label.poa.trimestre.01'|translate}}</option>
+          <option value="2">{{'siisspolweb.label.poa.trimestre.02'|translate}}</option>
+          <option value="3">{{'siisspolweb.label.poa.trimestre.03'|translate}}</option>
+          <option value="4">{{'siisspolweb.label.poa.trimestre.04'|translate}}</option>
+        </select>
+
+      </div>
+
+
+    </div>
+
+  </mat-card-content>
+</mat-card>
+<pre>{{objetoPantalla|json}}</pre>
+<!--<fieldset>
+  <legend>Información Personal</legend>
+  Nombre: <input name='nombre' type='text' tabindex='1'>
+  Apellidos: <input name='apellidos' type='text' tabindex='2'>
+</fieldset>
+
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center text-primary">
+      <span class="pi pi-user mr-2"></span>
+      <span class="font-bold text-lg">User Details</span>
+    </div>
+  </ng-template>
+  Content
+</p-fieldset>-->

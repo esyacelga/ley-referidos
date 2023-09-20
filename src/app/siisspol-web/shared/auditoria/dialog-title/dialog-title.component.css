@@ -1,0 +1,29 @@
+.modal-header {
+  height: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  margin-top: -50px;
+
+}
+
+.modal-content-custom {
+  width: 500px; /* Tamaño fijo del modal */
+  height: 350px;
+}
+
+.custom-footer {
+  margin-bottom: -100px;
+}
+
+h3 {
+  margin: 0 0 45px;
+  color: white;
+  /*width: 200px; !* Ajusta el valor según tus necesidades *!*/
+  /*height: 100px;*/
+}

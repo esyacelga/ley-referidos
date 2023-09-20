@@ -1,0 +1,1 @@
+export type tipoCampoEntrada = 'FECHA-SIMPLE' | 'FECHA-RANGO'| 'TODOS-FECHA-RANGO' | 'COMBO-OPCIONES' | 'TEXTO-BUSQUEDA' | 'VOID'

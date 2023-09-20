@@ -1,0 +1,141 @@
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+<div class="ui-cuerpo-pagina">
+  <mat-card *ngIf="objPermisoAnticipo">
+    <mat-card-content>
+      <div class="col-md-4" *ngIf="!objPermisoAnticipo.idPermisoPagoContabilidad">
+        <label class="l-h-0x font-bold">{{'siisspolweb.tramite.lst.cpag'|translate}}</label>
+        <ng-select [(ngModel)]="cpag" (change)="seleccionarItem($event)">
+          <ng-option class="form-control"
+                     *ngFor="let iterador of lstTramiteCpag"
+                     [value]="iterador.idInstancia">
+            {{iterador.ticket}}
+          </ng-option>
+        </ng-select>
+        <label class="l-h-0x form-control"
+               *ngIf="objPermisoAnticipo.idPermisoPagoContabilidad">{{objPermisoAnticipo.codigoCpag}}</label>
+      </div>
+
+      <div class="col-md-3" *ngIf="objPermisoAnticipo.idPermisoPagoContabilidad">
+        <label class="l-h-0x font-bold">{{'siisspolweb.tramite.lst.cpag'|translate}}</label>
+        <label class="l-h-0x form-control">{{objPermisoAnticipo.codigoCpag}}</label>
+      </div>
+
+      <div class="col-lg-3">
+        <div>
+          <label class="l-h-0x font-bold">{{'siisspolweb.contabilidad.label.aniopms'|translate}}</label>
+          <div class="line-sm"></div>
+          <input [(ngModel)]="objPermisoAnticipo.anio"
+                 [disabled]="objPermisoAnticipo.idPermisoPagoContabilidad ? true:false"
+                 class="form-control" type="text" matInput placeholder=""
+                 required="true">
+        </div>
+      </div>
+
+      <div class="col-lg-3" *ngIf="objPermisoAnticipo.idPermisoPagoContabilidad">
+        <div>
+          <label class="l-h-0x font-bold">{{'siisspolweb.comun.label.pm'|translate}}</label>
+          <div class="line-sm"></div>
+          <input [(ngModel)]="objPermisoAnticipo.codigoPms"
+                 [disabled]="true"
+                 class="form-control" type="text" matInput placeholder=""
+                 required="true">
+        </div>
+        <button mat-mini-fab
+                (click)="openDialog()"
+                color="primary"
+                matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                matTooltipPosition="above">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="col-lg-3" *ngIf="objPermisoAnticipo.idPermisoPagoContabilidad">
+        <div>
+          <label class="l-h-0x font-bold">{{'siisspolweb.comun.label.ads'|translate}}</label>
+          <div class="line-sm"></div>
+          <input [(ngModel)]="objPermisoAnticipo.idAsientoAds"
+                 class="form-control" type="text" matInput placeholder=""
+                 required="true">
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div>
+          <label class="l-h-0x font-bold">{{'siisspolweb.contabilidad.label.anioads'|translate}}</label>
+          <div class="line-sm"></div>
+          <input [(ngModel)]="objPermisoAnticipo.anioAds"
+                 class="form-control" type="text" matInput placeholder=""
+                 required="true">
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="!objPermisoAnticipo">
+    <mat-card-content>
+      <p-table [value]="lstPermisoAnticipo"
+               styleClass="p-datatable-striped" selectionMode="single"
+               [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10,25,50]"
+      >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            {{'siisspolweb.comun..grid.permiso.anticipo.titulo'|translate}}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="ticket">{{'siisspolweb.label.comun.ticket'|translate}}
+              <p-columnFilter type="text" field="ticket" display="menu"></p-columnFilter>
+              <p-sortIcon field="ticket"></p-sortIcon>
+            </th>
+            <th pSortableColumn="anio">{{'siisspolweb.label.comun.anio'|translate}}
+              <p-columnFilter type="text" field="anio" display="menu"></p-columnFilter>
+              <p-sortIcon field="anio"></p-sortIcon>
+            </th>
+            <th pSortableColumn="codigo">{{'siisspolweb.label.comun.codigo'|translate}}
+              <p-columnFilter type="text" field="codigo" display="menu"></p-columnFilter>
+              <p-sortIcon field="codigo"></p-sortIcon>
+            </th>
+            <th>{{'siisspolweb.comun.label.valor'|translate}}
+            </th>
+            <th pSortableColumn="esProcesado">{{'siisspolweb.comun.label.procesado'|translate}}
+              <p-columnFilter type="text" field="esProcesado" display="menu"></p-columnFilter>
+              <p-sortIcon field="esProcesado"></p-sortIcon>
+            </th>
+            <th>{{'siisspolweb.comun.accion'|translate}}
+
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item.ticket}}</td>
+            <td>{{item.anio}}</td>
+            <td>{{item.codigo}}</td>
+            <td>{{item.valorTotalPms}}</td>
+            <td>{{item.esProcesado | toBoolean}}</td>
+            <td>
+              <button mat-mini-fab
+                      appAuditoria
+                      [tabla]="'[pmedicas].[permiso_pago_contabilidad]'"
+                      [columna]="'id_permiso_pago_contabilidad'"
+                      [valorId]="item.idPermisoPagoContabilidad"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-mini-fab
+                      (click)="editarRegistro(item)"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </mat-card-content>
+  </mat-card>
+</div>

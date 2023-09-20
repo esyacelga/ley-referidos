@@ -1,0 +1,15 @@
+<!--<mat-label></mat-label>-->
+
+<div *ngFor="let item of lstPreguntas">
+  <h2><strong>{{item.descripcion}}</strong></h2>
+  <mat-radio-group [(ngModel)]="item.opcion">
+    <mat-radio-button (click)="cargarDato()"
+                      value="1">{{'siisspolweb.label.si'|translate}}</mat-radio-button>
+    <mat-radio-button (click)="cargarDato()"
+                      value="0">{{'siisspolweb.label.no'|translate}}</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+
+
+

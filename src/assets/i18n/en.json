@@ -1,0 +1,28 @@
+{
+  "demo.title": "Translation demo",
+  "demo.text": "This is a simple demonstration app for ngx-translate",
+  "p-filterMenu": {
+    "equals": "Igual a",
+    "notEquals": "No igual a",
+    "startsWith": "Comienza con",
+    "contains": "Contiene",
+    "notContains": "No contiene",
+    "endsWidth": "Termina con",
+    "inRange": "En rango",
+    "greaterThan": "Mayor que",
+    "lessThan": "Menor que",
+    "clear": "Limpiar",
+    "p-filterMenu": {
+      "equals": "Igual a",
+      "notEquals": "No igual a",
+      "startsWith": "Comienza con",
+      "contains": "Contiene",
+      "notContains": "No contiene",
+      "endsWidth": "Termina con",
+      "inRange": "En rango",
+      "greaterThan": "Mayor que",
+      "lessThan": "Menor que",
+      "clear": "Limpiar"
+    }
+  }
+}

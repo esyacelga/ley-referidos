@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-content>
+    <p-table [value]="lstFlujoProceso"
+             styleClass="p-datatable-striped" selectionMode="single"
+             [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10,25,50]">
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          {{'siisspolweb.label.documento.administracion.flujo'|translate}}
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+
+          <th pSortableColumn="idCatalogo">{{'siisspolweb.comun.label.id'|translate}}
+            <p-sortIcon field="idCatalogo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="descripcion">{{'siisspolweb.persona.label.nombre'|translate}}
+            <p-sortIcon field="descripcion"></p-sortIcon>
+          </th>
+          <th pSortableColumn="descripcion">{{'siisspolweb.label.documento.descripcion'|translate}}
+            <p-sortIcon field="descripcion"></p-sortIcon>
+          </th>
+          <th pSortableColumn="codigo">{{'siisspolweb.label.comun.codigo'|translate}}
+            <p-sortIcon field="codigo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="estado">{{'siisspolweb.label.estado'|translate}}
+            <p-sortIcon field="estado"></p-sortIcon>
+          </th>
+          <th>
+            {{'siisspolweb.comun.accion'|translate}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{item.idProcesoFlujo}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.descripcion }}</td>
+          <td>{{item.codigo }}</td>
+          <td>{{item.estado | toBoolean}}</td>
+          <td>
+            <button mat-mini-fab
+                    appAuditoria
+                    [tabla]="'[comun].[proceso_flujo]'"
+                    [columna]="'id_proceso_flujo'"
+                    [valorId]="item.idProcesoFlujo"
+                    color="primary"
+                    matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                    matTooltipPosition="above">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-mini-fab
+                    (click)="editarRegistro(item)"
+                    color="primary"
+                    matTooltip="{{'siisspolweb.comun.btn.procesado'|translate}}"
+                    matTooltipPosition="above">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </mat-card-content>
+</mat-card>

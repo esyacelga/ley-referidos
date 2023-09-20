@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-content>
+    <button type="button" class="btn btn-primary btn-sm"
+            id="ng-btn-nuevo"
+            *ngIf="objBtn.verNuevo"
+            matTooltip="{{'siisspolweb.comun.tnuevo'|translate}}"
+            (click)="accionNuevo(accion)"
+            matTooltipPosition="below"
+    >
+      <i class="fas fa-plus" aria-hidden="true"></i>
+      {{"siisspolweb.comun.nuevo"|translate}}
+    </button>
+    <button
+      appConfirmacion
+      *ngIf="objBtn.verCancelar"
+      [objConfirmacion]="objConfirmacionCancelar"
+      matTooltip="{{'siisspolweb.comun.tcancelar'|translate}}"
+      matTooltipPosition="below"
+      type="button" class="btn btn-warning btn-sm"
+    >
+      <i class="fas fa-ban" aria-hidden="true"></i>
+      {{"siisspolweb.comun.cancelar"|translate}}
+    </button>
+    <button type="submit"
+            *ngIf="objBtn.verGuardar"
+            appConfirmacion
+            [objConfirmacion]="objConfirmacionGuardar"
+            matTooltip="{{'siisspolweb.comun.tguardar'|translate}}"
+            matTooltipPosition="below"
+            class="btn btn-success btn-sm"
+    >
+      <i class="fas fa-floppy-disk" aria-hidden="true"></i>
+      {{"siisspolweb.comun.guardar"|translate}}</button>
+    <button type="submit"
+            *ngIf="objBtn.verProcesar"
+            appConfirmacion
+            [objConfirmacion]="objConfirmacionProcesar"
+            matTooltip="{{'siisspolweb.comun.tool.procesado'|translate}}"
+            matTooltipPosition="below"
+            class="btn btn-info btn-sm"
+    >{{"siisspolweb.comun.btn.procesar"|translate}}</button>
+    <button
+      *ngIf="objBtn.reportePantalla"
+      (click)="abrirPanelSeleccionReporte()"
+      matTooltip="{{'siisspolweb.label.comun.imprimir'|translate}}"
+      class="btn btn-primary btn-sm">
+      <i class="fas fa-print" aria-hidden="true"></i>
+      {{'siisspolweb.label.comun.imprimir'|translate}}
+    </button>
+
+
+  </mat-card-content>
+</mat-card>
+
+
+<div class="line-xsm"></div>

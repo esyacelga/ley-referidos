@@ -1,0 +1,39 @@
+<mat-card >
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <label for="emailHelp1">{{'siisspolweb.persona.label.nombre'|translate}}</label>
+        <input type="email" class="form-control"
+               id="emailHelp1" aria-describedby="emailHelp"
+               [(ngModel)]="formFlujo.nombre"
+               placeholder="{{'siisspolweb.label.flujo.nombre.placeholder'|translate}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6  form-group">
+        <label for="descripcion">{{'siisspolweb.comun.descripcion'|translate}}</label>
+        <input type="text" class="form-control" id="descripcion" aria-describedby="descripcion"
+               maxlength="250"
+               [(ngModel)]="formFlujo.descripcion"
+               placeholder="{{'siisspolweb.label.flujo.descripcion.placeholder'|translate}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 form-group">
+        <label for="emailHelp1">{{'siisspolweb.label.comun.codigo'|translate}}</label>
+        <input type="email" class="form-control"
+               maxlength="10"
+               id="codigo" aria-describedby="codigo"
+               [(ngModel)]="formFlujo.codigo"
+               placeholder="{{'siisspolweb.label.flujo.codigo.placeholder'|translate}}">
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="row">
+      <div class="col-lg-6">
+        <mat-slide-toggle
+          [(ngModel)]="formFlujo.estado">{{'siisspolweb.remate.remate.estado'|translate}}</mat-slide-toggle>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

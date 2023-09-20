@@ -1,0 +1,25 @@
+<app-barra-herramientas [objBtn]="barraHerramientaBoton"></app-barra-herramientas>
+<mat-card>
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <div *ngIf="lstConfiguracion && lstConfiguracion.length>0">
+          <app-generic-tree [genericList]="lstConfiguracion"
+                            [clavePrimaria]="'idProcesoConfiguracion'"
+                            [clavePadre]="'idProcesoConfiguracionPadre'"
+                            [aliasHijo]="'children'"
+                            [label]="'descripcion'"
+                            (objetoSalida)="cargarObjeto($event)"
+
+          ></app-generic-tree>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-form-config *ngIf="!lstConfiguracion || objSalida.idProcesoConfiguracion!=''"
+                         [objConfig]="objSalida">
+
+        </app-form-config>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

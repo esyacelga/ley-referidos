@@ -1,0 +1,82 @@
+<!--<button type="button" pButton label="MIo" (click)="paginar()">dd </button>-->
+<app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
+<div class="ui-cuerpo-pagina">
+  <mat-card *ngIf="!objFeriado">
+    <mat-card-content>
+      <p-table [value]="lstFeriado"
+               styleClass="p-datatable-striped" selectionMode="single"
+               [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10,25,50]"
+      >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            {{'siisspolweb.comun.feriado.titulo'|translate}}
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="fecha">{{'siisspolweb.comun.fecha'|translate}}
+              <p-sortIcon field="fecha"></p-sortIcon>
+            </th>
+            <th pSortableColumn="descripcion">{{'siisspolweb.comun.descripcion'|translate}}
+              <p-sortIcon field="descripcion"></p-sortIcon>
+            </th>
+            <th pSortableColumn="nacional">{{'siisspolweb.comun.nacional'|translate}}
+              <p-sortIcon field="nacional"></p-sortIcon>
+            </th>
+            <th>{{'siisspolweb.comun.accion'|translate}}
+
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{item.fecha}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>{{item.nacional | toBoolean }}</td>
+            <td>
+              <button mat-mini-fab
+                      appAuditoria
+                      [tabla]="'[comun].[feriado]'"
+                      [columna]="'fecha'"
+                      [valorId]="item.fecha"
+                      color="primary"
+                      matTooltip="{{'siisspolweb.comun.auditora.ver'|translate}}"
+                      matTooltipPosition="above">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="objFeriado">
+    <mat-card-content>
+      <div class="col-lg-6">
+        <div>
+          <label class="l-h-0x font-bold small">{{'siisspolweb.comun.fecha'|translate}}</label>
+          <div class="line-sm"></div>
+          <p-calendar inputId="fecha" dateFormat="dd/MM/yy"
+                      [(ngModel)]="objFeriado.fecha" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div>
+          <label class="l-h-0x font-bold small">{{'siisspolweb.comun.descripcion'|translate}}</label>
+          <div class="line-sm"></div>
+          <input [(ngModel)]="objFeriado.descripcion" class="form-control" type="text" matInput placeholder=""
+                 required="true">
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="col-lg-6">
+        <mat-slide-toggle class="font-bold"
+                          [(ngModel)]="objFeriado.esNacional">{{'siisspolweb.comun.nacional'|translate}}</mat-slide-toggle>
+        <div class="line"></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -1,0 +1,62 @@
+/*@font-face {
+  font-family: 'Barlow';
+  src: url('./assets/font/Barlow/Barlow-Black.ttf');
+}*/
+body{
+  padding: 30px;
+}
+.separador{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+/*.separador .h1{
+
+}*/
+
+.divider-separator{
+  width: 100%;
+  font-size: 17px;
+  line-height: 31.5714px;
+  text-align: start;
+  letter-spacing: normal;
+  color: #000000;
+}
+.elementor-divider{
+  font-size: 17px;
+  line-height: 31.5714px;
+  text-align: start;
+  letter-spacing: normal;
+  color: #000000;
+}
+h1{
+  border-bottom: 1px solid black;
+  font-size:48px;
+  font-weight: 400;
+  line-height: 57.6px;
+  letter-spacing: normal;
+  display:block;
+  font-family: Barlow-semi-Thin;
+  text-align: center;
+}
+h2{
+  font-family: Barlow-semi-Thin;
+}
+h3{
+  border-bottom: 1px solid black;
+  font-family: Barlow-semi-Thin;
+}
+
+.isspol-class .mat-form-field-label .prueba-classe{
+
+  margin-top: 100%;
+  margin-left: 100%;
+}
+
+.isspol-class .mat-form-field-label .prueba-classe{
+  margin-top: 100%;
+  margin-left: 100%;
+}
+.isspol-class .mat-form-field-infix {
+  padding: 0.5em;
+}
+

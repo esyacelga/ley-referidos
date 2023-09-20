@@ -1,0 +1,60 @@
+<div class="line-sm"></div>
+<mat-card *ngIf="objMigracion">
+  <mat-card-content>
+    <div class="line"></div>
+    <p-table [value]="lstAporteInfofv"
+             styleClass="p-datatable-striped" selectionMode="single"
+             [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10,25,50,100,200]">
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          {{'siisspolweb.fondosv.form.label.titulonuevo'|translate}}
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="numero">{{'siisspolweb.fondosv.tabla.label.num'|translate}}
+            <p-sortIcon field="numero"></p-sortIcon>
+          </th>
+          <th pSortableColumn="cedula">{{'siisspolweb.fondosv.tabla.label.cedula'|translate}}
+            <p-sortIcon field="cedula"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nombre">{{'siisspolweb.fondosv.tabla.label.nombre'|translate}}
+            <p-sortIcon field="nombre"></p-sortIcon>
+          </th>
+          <th pSortableColumn="aporte">{{'siisspolweb.fondosv.tabla.label.aporte'|translate}}
+            <p-sortIcon field="aporte"></p-sortIcon>
+          </th>
+          <th pSortableColumn="interes">{{'siisspolweb.fondosv.tabla.label.interes'|translate}}
+            <p-sortIcon field="interes"></p-sortIcon>
+          </th>
+          <th pSortableColumn="interes">{{'siisspolweb.fondosv.tabla.label.imposiciones'|translate}}
+            <p-sortIcon field="interes"></p-sortIcon>
+          </th>
+          <th>
+            {{'siisspolweb.comun.accion'|translate}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{item.num}}</td>
+          <td>{{item.cedula}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.aporte|currency}}</td>
+          <td>{{item.interes|currency}}</td>
+          <td>{{item.imposiciones}}</td>
+          <td>
+            <button mat-mini-fab
+                    (click)="detalleAportes(item)"
+                    color="primary"
+                    matTooltip="{{'siisspolweb.comun.btn.detalle'|translate}}"
+                    matTooltipPosition="above">
+              <mat-icon>checklist</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </mat-card-content>
+</mat-card>
