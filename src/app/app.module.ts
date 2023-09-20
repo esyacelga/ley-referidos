@@ -18,6 +18,7 @@ import {MY_FORMATS} from "./siisspol-web/modules/material/material.module";
 import {MAT_DATE_FORMATS} from "@angular/material/core";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RemoteEjecutionFlow} from "./siisspol-web/modules/pages/comun/services/remote-ejecution-flow";
+import {LeyServiceModule} from "./ley-service/ley-service.module";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {RemoteEjecutionFlow} from "./siisspol-web/modules/pages/comun/services/r
   ],
   imports: [
     PageModule,
+    LeyServiceModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),

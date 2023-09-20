@@ -29,3 +29,5 @@ export const PERSISTENCIA_PROC_XML_INSERTAR_DOCUMENTO_ADJUNTO_REMATE_POSTULANTE 
 
 export const PERSISTENCIA_PROC_XML_CRUD_PRESUPUESTO_VALOR_NEGATIVO = 'contabilidad.proc_xml_crud_valores_negativo';
 export const PERSISTENCIA_PROC_XML_CRUD_PRESUPUESTO_CIERRE_PRESUPUESTARIO = 'contabilidad.proc_xml_crud_cierre_presupuestario';
+
+export const PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA = 'dbo.proc_xml_crud_persona_referencia';

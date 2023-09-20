@@ -45,6 +45,7 @@ import {
 import {
   CierrePresupuestarioComponent
 } from "./siisspol-web/modules/pages/financiero/presupuesto/component/cierre-presupuestario/cierre-presupuestario.component";
+import {RegistroClienteComponent} from "./ley-service/componentes/registro-cliente/registro-cliente.component";
 
 
 const routes: Routes = [
@@ -56,6 +57,9 @@ const routes: Routes = [
   },
   {
     path: 'mantDenuncias/:informacionSesion', component: MantDenunciaComponent
+  },
+  {
+    path: 'registro-cliente/:informacionSesion', component: RegistroClienteComponent
   },
   {
     path: 'adminPregunta/:informacionSesion', component: MantPreguntaComponent

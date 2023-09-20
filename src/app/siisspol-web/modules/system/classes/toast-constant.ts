@@ -20,7 +20,8 @@ export const PROC_XML_REST_GENERICO = 'proPostXMLService';
 export const PROC_XML_REST_REGISTRO_USUARIO = 'proPostXMLServiceRegister';
 export const PROC_GET_XML_GENERICO = 'proNoTransaccionalXMLService';
 export const PROC_POST_XML_GENERICO = 'proTransaccionalXMLService';
-export const PROC_POST_XML_IGENERICO = 'procIntranetTransaccionalXmlSPGenerico';
+export const PROC_GET_XML_GENERICO_INTRANET = 'procIntranetXMLSPGenericoConsultas';
+export const PROC_POST_XML_GENERICO_INTRANET = 'procIntranetXMLSPGenericoTransaccional';
 
 export const ONLINE = 'De nuevo en lÍnea';
 export const OFFLINE = 'Sin conexión';
