@@ -2,6 +2,7 @@ export const COMUN_CONSULTAS = 'comun.proc_xml_comun_cosultas';
 export const INVERSION_CONSULTAS = 'poa.proc_xml_consultas_poa';
 export const POA_CONSULTAS = 'inversion.proc_xml_inversion_consultas';
 export const DOCUMENTO_CONSULTAS = 'documento.proc_xml_documento_consultas';
+export const LEY_CONSULTAS = 'dbo.proc_xml_consultas_modulo';
 export const SEGURDIDAD_CONSULTAS = 'seguridad.proc_xml_opcion_consultas';
 export const TRAMITES_INICIALES_CONSULTAS = 'pmedicas.proc_xml_pmed_iniciales_consultas';
 export const PROC_OBTENER_LISTA_REMATES = 'coactiva.proc_xml_obtener_lista_remates';

@@ -20,7 +20,10 @@ export class PersonaService {
   private obtenerPersonaRestClient(cedula: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const params = {cedula: cedula};
-    return this.http.get<PersonaDto>(ROOT_URL + "/getPersona", {headers: headers, params: params});
+    return this.http.get<PersonaDto>("https://siisspolweb.isspol.org.ec" + "/getPersona", {
+      headers: headers,
+      params: params
+    });
   }
 
   private obtenerPersonaObservable = (cedula: string) => {

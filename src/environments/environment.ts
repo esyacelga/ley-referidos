@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://192.168.2.234:8180'
+  url: 'http://192.168.9.195:8180/siisspol-web-rest-service'
 };
 /*
  * For easier debugging in development mode, you can import the following file

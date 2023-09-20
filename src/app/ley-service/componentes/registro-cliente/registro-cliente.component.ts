@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {BarraHerramientaBoton} from "../../../siisspol-web/shared/barra-herramientas/barra-herramientas.component";
-import {ReporteDenuncia} from "../../../siisspol-web/shared/reporte/classes/reporte-denuncia";
-import {DenunciaService} from "../../../siisspol-web/modules/pages/documento/services/denuncia.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../siisspol-web/shared/redux/store/reducers/app.reducer";
 import {ActivatedRoute} from "@angular/router";
@@ -12,6 +10,10 @@ import {
 } from "../../../siisspol-web/modules/system/services/system/execute-call-procedure.service";
 import {Subscription} from "rxjs";
 import {botonesBarraHerramientas} from "../../../siisspol-web/shared/redux/types";
+import {PersonaReferenciaService} from "../../services/persona-referencia.service";
+import {PersonaReferenciaDto} from "../../classes/PersonaReferenciaDto";
+import {PersonaService} from "../../../siisspol-web/modules/pages/persona/services/persona.service";
+import {PersonaDto} from "../../../siisspol-web/modules/pages/persona/PersonaDto";
 
 @Component({
   selector: 'app-registro-cliente',
@@ -21,8 +23,13 @@ import {botonesBarraHerramientas} from "../../../siisspol-web/shared/redux/types
 export class RegistroClienteComponent implements OnInit {
   private objSubscripcion: Subscription | undefined;
   objBtn: BarraHerramientaBoton = new BarraHerramientaBoton(undefined, undefined);
+  lstPersonas: PersonaReferenciaDto [] = new Array();
+  persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
+  objPersona: PersonaDto | undefined;
+  CALENDER_CONFIG_EN: any;
 
-  constructor(public svrDenuncia: DenunciaService,
+  constructor(public svrReferencia: PersonaReferenciaService,
+              private svrPersona: PersonaService,
               private store: Store<AppState>,
               private route: ActivatedRoute,
               private toastr: ToastrService,
@@ -33,14 +40,43 @@ export class RegistroClienteComponent implements OnInit {
     this.intSvr.setActiveRoute(route)
   }
 
+  //data:PersonaDto= new PersonaDto();
+  public async cargarPersona(cedula: string) {
+    const objPersona: PersonaDto = (await this.svrPersona.buscarPersona(cedula) as PersonaDto);
+    this.persona.nombre = objPersona.nombre!;
+    this.persona.fechaNaciminento = this.milisegundosAFechaString(objPersona.fechaNacimiento);
+
+  }
+
+  public milisegundosAFechaString(milisegundos: number) {
+    const fecha = new Date(milisegundos);
+    const dia = fecha.getDate();
+    const mes = fecha.getMonth() + 1; // Los meses se indexan desde 0 (enero) hasta 11 (diciembre)
+    const año = fecha.getFullYear();
+
+    // Formatear el día y el mes para que tengan siempre dos dígitos
+    const diaFormateado = (dia < 10) ? `0${dia}` : dia;
+    const mesFormateado = (mes < 10) ? `0${mes}` : mes;
+
+    // Crear la cadena de fecha en formato dd/mm/yyyy
+    const fechaString = `${diaFormateado}/${mesFormateado}/${año}`;
+
+    return fechaString;
+  }
+
+  private async cargarGrid() {
+    this.lstPersonas = await this.svrReferencia.obtenerPersonas();
+  }
+
   ngOnInit(): void {
+    this.cargarGrid();
     this.objSubscripcion = this.store.select('accionComponenteBarraHerramientas').subscribe((data: botonesBarraHerramientas) => {
       if (data === 'GUARDAR') {
         //this.registrarNuevoEstado();
       }
       if (data === 'CANCELAR') {
         //this.objDenuncia = undefined;
-        this.objBtn = new BarraHerramientaBoton(undefined, undefined, new ReporteDenuncia());
+        this.objBtn = new BarraHerramientaBoton(undefined, undefined);
         this.objBtn.verNuevo = false;
       }
       if (data === 'NUEVO') {
@@ -50,5 +86,10 @@ export class RegistroClienteComponent implements OnInit {
         /*this.procesarPagoCierreCXP();*/
       }
     });
+  }
+
+  editarRegistro(objeto: PersonaReferenciaDto) {
+    this.persona.idPesonaReferencia = 0
+
   }
 }

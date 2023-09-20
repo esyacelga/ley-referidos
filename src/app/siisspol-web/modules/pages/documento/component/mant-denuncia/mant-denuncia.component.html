@@ -2,6 +2,8 @@
 <div class="ui-cuerpo-pagina">
   <mat-card *ngIf="!objDenuncia">
     <mat-card-content>
+
+
       <p-table [value]="lstDenuncia"
                styleClass="p-datatable-striped" selectionMode="single"
                [paginator]="true" [rows]="10" [showCurrentPageReport]="true"

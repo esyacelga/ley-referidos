@@ -8,10 +8,14 @@ import {PersonaReferenciaDto} from "../classes/PersonaReferenciaDto";
 import {RequestOptions} from "../../siisspol-web/modules/system/classes/RequestOptions";
 import {DenunciaDto} from "../../siisspol-web/modules/pages/documento/classes/dto/DenunciaDto";
 import {
-  PERSISTENCIA_CAMBIO_ESTADO_DENUNCIA,
   PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA
 } from "../../siisspol-web/modules/pages/constantes/transaccion-constante";
-import {PROC_POST_XML_GENERICO_INTRANET} from "../../siisspol-web/modules/system/classes/toast-constant";
+import {
+  PROC_GET_XML_GENERICO_INTRANET,
+  PROC_POST_XML_GENERICO_INTRANET
+} from "../../siisspol-web/modules/system/classes/toast-constant";
+import {FiltroSpConsultas} from "../../siisspol-web/modules/pages/seguridad/services/opcion.service";
+import {LEY_CONSULTAS} from "../../siisspol-web/modules/pages/constantes/consulta-constante";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +35,15 @@ export class PersonaReferenciaService {
     opcionesRespuesta.presentarToast = false;
     const objeto: DenunciaDto = await (this.rest.servicioRestGenericoPost(personaDto, PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA, opcionesRespuesta)) as DenunciaDto;
     return objeto;
+  }
+
+  public async obtenerPersonas() {
+    const filtro: FiltroSpConsultas = {filtro: '', tipoConsulta: 'OBTENER-PERSONAS'};
+    const objPeticion: RequestOptions = new RequestOptions();
+    objPeticion.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.lista.denuncia');
+    objPeticion.restUrlConsultas = PROC_GET_XML_GENERICO_INTRANET;
+    const lst = await (this.rest.getGenericObjects(filtro, LEY_CONSULTAS, objPeticion) as unknown as PersonaReferenciaDto[]);
+    return lst;
   }
 
 }
