@@ -98,7 +98,6 @@ export class BarraHerramientasComponent implements OnInit, OnDestroy {
     this.store.dispatch(setAccion({accion}));
     accion = 'AGREGAR';
     this.store.dispatch(setAccion({accion}));
-    this.objBtn = new BarraHerramientaBoton(true);
     accion = 'VOID';
     this.store.dispatch(setAccion({accion}));
   }

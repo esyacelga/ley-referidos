@@ -6,6 +6,7 @@ export type botonesBarraHerramientas =
   | 'IMPRIMIR'
   | 'VOID'
   | 'PROCESAR'
+  | 'GUARDAR-MODAL'
   | 'AGREGAR';
 export type botonesBarraHerramientasSmall =
   'NUEVO'

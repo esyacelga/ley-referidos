@@ -85,6 +85,9 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
       if (data == "GUARDAR") {
         this.registrar(this.persona, false);
       }
+      if (data == "GUARDAR-MODAL") {
+        this.registrar(this.persona, true);
+      }
     });
   }
 

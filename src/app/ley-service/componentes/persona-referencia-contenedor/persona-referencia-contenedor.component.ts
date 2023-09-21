@@ -50,7 +50,9 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
       if (data === 'AGREGAR') {
         this.abrirModalRegistro();
       }
-
+      if (data === 'CANCELAR') {
+        this.personaReferenciaDto.idPersonaReferencia = undefined;
+      }
     });
   }
 
@@ -63,13 +65,13 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
     });
   }
 
-  public revisarPersonaRegistrada(personaActual: PersonaReferenciaDto) {
-    // @ts-ignore
-    if (personaActual && personaActual.idPersonaReferencia) {
-      this.personaReferenciaDto.idPersonaReferencia = undefined;
-      this.objBtn = new BarraHerramientaBoton(undefined, undefined);
-    }
-  }
+  /*  public revisarPersonaRegistrada(personaActual: PersonaReferenciaDto) {
+      // @ts-ignore
+      if (personaActual && personaActual.idPersonaReferencia) {
+        this.personaReferenciaDto.idPersonaReferencia = undefined;
+        this.objBtn = new BarraHerramientaBoton(undefined, undefined);
+      }
+    }*/
 
   ngOnDestroy(): void {
     this.objSubscripcion?.unsubscribe();

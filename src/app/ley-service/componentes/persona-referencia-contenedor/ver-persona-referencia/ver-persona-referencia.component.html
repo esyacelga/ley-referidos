@@ -5,8 +5,7 @@
       class="l-h-0x font-bold small">{{'ley.label.cedula'|translate}}</label>
     <input class="form-control" type="text"
            matInput maxlength="20"
-           (keyup.enter)="cargarPersona(persona.cedula)"
-           (keyup.tab)="cargarPersona(persona.cedula)"
+           disabled="true"
            [(ngModel)]="persona.cedula"
            placeholder="" required="true">
 
@@ -16,6 +15,7 @@
       class="l-h-0x font-bold small">{{'ley.label.nombre'|translate}}</label>
     <input class="form-control" type="text"
            matInput maxlength="200"
+           disabled="true"
            [(ngModel)]="persona.nombre"
            placeholder="" required="true">
 
@@ -26,6 +26,7 @@
       class="l-h-0x font-bold small">{{'ley.label.telefono'|translate}}</label>
     <input class="form-control" type="text"
            matInput maxlength="200"
+           disabled="true"
            [(ngModel)]="persona.telefono  "
            placeholder="" required="true">
 
@@ -35,6 +36,7 @@
       class="l-h-0x font-bold small">{{'ley.label.direccion'|translate}}</label>
     <input class="form-control" type="text" maxlength="200"
            matInput
+           disabled="true"
            [(ngModel)]="persona.direccion"
            placeholder="" required="true">
 
@@ -42,8 +44,11 @@
   <div class="col-sm-12 col-md-3 col-lg-3">
     <label
       class="l-h-0x font-bold small">{{'ley.label.fecha.nacimiento'|translate}}:...</label>
-    <p-calendar inputId="fechaMaximaEjecucion" dateFormat="dd/mm/yy"
-                [(ngModel)]="persona.fechaNacimiento" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+    <input class="form-control" type="text" maxlength="200"
+           matInput
+           disabled="true"
+           [(ngModel)]="persona.fechaNacimiento"
+           placeholder="" required="true">
 
   </div>
 
