@@ -1,8 +1,13 @@
 <app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
 <mat-card>
   <mat-card-content>
-    <app-grid-persona-referencia>
-
+    <app-registro-cliente *ngIf="personaReferenciaDto.idPersonaReferencia!=undefined"
+                          [personaReferencia]="personaReferenciaDto"
+                          (personaReferencia)="revisarPersonaRegistrada($event)"
+    ></app-registro-cliente>
+    <app-grid-persona-referencia *ngIf="personaReferenciaDto.idPersonaReferencia==undefined"
+                                 (personaCliente)="cargarPersona($event)">
     </app-grid-persona-referencia>
   </mat-card-content>
 </mat-card>
+<pre>{{personaReferenciaDto|json}}</pre>

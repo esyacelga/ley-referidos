@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {PersonaReferenciaDto} from "../../../classes/PersonaReferenciaDto";
 import {PersonaReferenciaService} from "../../../services/persona-referencia.service";
 import {Store} from "@ngrx/store";
@@ -15,8 +15,9 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: './grid-persona-referencia.component.html',
   styleUrls: ['./grid-persona-referencia.component.css']
 })
-export class GridPersonaReferenciaComponent implements OnInit {
+export class GridPersonaReferenciaComponent implements OnInit, OnDestroy {
   lstPersonas: PersonaReferenciaDto [] = new Array();
+  @Output('personaCliente') personaCliente: EventEmitter<PersonaReferenciaDto> = new EventEmitter();
 
   constructor(public svrReferencia: PersonaReferenciaService,
               private store: Store<AppState>,
@@ -32,7 +33,14 @@ export class GridPersonaReferenciaComponent implements OnInit {
     this.lstPersonas = await this.svrReferencia.obtenerPersonas();
   }
 
+  public editarRegistro(objeto: PersonaReferenciaDto) {
+    this.personaCliente.emit(objeto)
+  }
+
   ngOnInit(): void {
     this.cargarGrid();
+  }
+
+  ngOnDestroy(): void {
   }
 }

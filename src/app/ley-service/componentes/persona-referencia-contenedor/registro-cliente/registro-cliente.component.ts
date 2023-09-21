@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {BarraHerramientaBoton} from "../../../../siisspol-web/shared/barra-herramientas/barra-herramientas.component";
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {AppState} from "../../../../siisspol-web/shared/redux/store/reducers/app.reducer";
 import {ActivatedRoute} from "@angular/router";
@@ -20,11 +19,10 @@ import {PersonaDto} from "../../../../siisspol-web/modules/pages/persona/Persona
   templateUrl: './registro-cliente.component.html',
   styleUrls: ['./registro-cliente.component.css']
 })
-export class RegistroClienteComponent implements OnInit {
+export class RegistroClienteComponent implements OnInit, OnDestroy {
   private objSubscripcion: Subscription | undefined;
-  objBtn: BarraHerramientaBoton = new BarraHerramientaBoton(undefined, undefined);
-  lstPersonas: PersonaReferenciaDto [] = new Array();
-  persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
+  @Input("personaReferencia") persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
+  @Output("personaReferencia") outPersona: EventEmitter<PersonaReferenciaDto> = new EventEmitter();
   CALENDER_CONFIG_EN: any;
 
   constructor(public svrReferencia: PersonaReferenciaService,
@@ -39,13 +37,9 @@ export class RegistroClienteComponent implements OnInit {
     this.intSvr.setActiveRoute(route)
   }
 
-  public async registrarPesona(objeto: PersonaReferenciaDto) {
-    const data: PersonaReferenciaDto = await this.svrReferencia.registrarPersona(objeto);
-    if (data) {
-      this.persona = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
-      this.cargarGrid();
-      this.objBtn = new BarraHerramientaBoton(undefined, undefined);
-    }
+  public async registrar(persona: PersonaReferenciaDto) {
+    const data: PersonaReferenciaDto = await this.svrReferencia.registrarPersona(persona);
+    this.outPersona.emit(data);
   }
 
 
@@ -72,20 +66,12 @@ export class RegistroClienteComponent implements OnInit {
     return fechaString;
   }
 
-  private async cargarGrid() {
-    this.lstPersonas = await this.svrReferencia.obtenerPersonas();
-  }
 
   ngOnInit(): void {
-    this.cargarGrid();
     this.objSubscripcion = this.store.select('accionComponenteBarraHerramientas').subscribe((data: botonesBarraHerramientas) => {
-      if (data === 'GUARDAR') {
-        this.registrarPesona(this.persona);
-      }
+
       if (data === 'CANCELAR') {
         this.persona.idPersonaReferencia = undefined;
-        this.objBtn = new BarraHerramientaBoton(undefined, undefined);
-        this.cargarGrid();
       }
       if (data === 'NUEVO') {
         this.persona.idPersonaReferencia = 0
@@ -93,11 +79,17 @@ export class RegistroClienteComponent implements OnInit {
       if (data === 'PROCESAR') {
         /*this.procesarPagoCierreCXP();*/
       }
+      if (data == "GUARDAR") {
+        this.registrar(this.persona);
+      }
     });
   }
 
   editarRegistro(objeto: PersonaReferenciaDto) {
     this.persona = objeto;
-    this.objBtn = new BarraHerramientaBoton(true, undefined);
+  }
+
+  ngOnDestroy(): void {
+    this.objSubscripcion?.unsubscribe();
   }
 }
