@@ -11,6 +11,9 @@ import {
 } from "../../../siisspol-web/modules/system/services/system/execute-call-procedure.service";
 import {PersonaReferenciaDto} from "../../classes/PersonaReferenciaDto";
 import {botonesBarraHerramientas} from "../../../siisspol-web/shared/redux/types";
+import {MatDialog} from "@angular/material/dialog";
+import {IsspolDialogObject} from "../../../siisspol-web/shared/confirmacion-modal/classes/isspol-dialog-object";
+import {EmergPersonaReferenciaComponent} from "./emerg-persona-referencia/emerg-persona-referencia.component";
 
 @Component({
   selector: 'app-persona-referencia-contenedor',
@@ -26,6 +29,7 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
               private store: Store<AppState>,
               private route: ActivatedRoute,
               private toastr: ToastrService,
+              public dialog: MatDialog,
               private intSvr: ExecuteCallProcedureService
   ) {
     this.intSvr.setActiveRoute(route)
@@ -34,6 +38,7 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
   public cargarPersona(persona: any) {
     this.objBtn = new BarraHerramientaBoton(true, undefined);
     this.personaReferenciaDto = persona;
+    this.objBtn.verAgregar = true;
   }
 
 
@@ -42,7 +47,19 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
       if (data === 'NUEVO') {
         this.personaReferenciaDto = new PersonaReferenciaDto(0, 0, '', '', '', '', '');
       }
+      if (data === 'AGREGAR') {
+        this.abrirModalRegistro();
+      }
 
+    });
+  }
+
+  public abrirModalRegistro() {
+    const configuracion: IsspolDialogObject = new IsspolDialogObject(this.personaReferenciaDto);
+    const dialogRef = this.dialog.open(EmergPersonaReferenciaComponent, configuracion);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      window.scrollTo({top: 0, behavior: 'smooth'});
     });
   }
 

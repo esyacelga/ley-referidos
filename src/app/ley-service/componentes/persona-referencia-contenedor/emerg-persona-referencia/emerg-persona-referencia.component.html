@@ -1,0 +1,11 @@
+<app-dialog-title [titulo]="'siisspolweb.label.comun.ingrese.informacion'"></app-dialog-title>
+<mat-card>
+  <mat-card-content>
+    <app-registro-cliente [idPersonaPadre]="idPersonaPadre"></app-registro-cliente>
+  </mat-card-content>
+  {{idPersonaPadre}}
+</mat-card>
+<mat-dialog-actions class="modal-footer" align="center">
+  <app-barra-herramientas-modal></app-barra-herramientas-modal>
+</mat-dialog-actions>
+

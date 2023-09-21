@@ -21,7 +21,8 @@ import {PersonaDto} from "../../../../siisspol-web/modules/pages/persona/Persona
 })
 export class RegistroClienteComponent implements OnInit, OnDestroy {
   private objSubscripcion: Subscription | undefined;
-  @Input("personaReferencia") persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
+  @Input("idPersonaPadre") idPersonaPadre: number = 0;
+  @Input("personaReferencia") persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, this.idPersonaPadre, '', '', '', '');
   @Output("personaReferencia") outPersona: EventEmitter<PersonaReferenciaDto> = new EventEmitter();
   CALENDER_CONFIG_EN: any;
 
@@ -37,8 +38,11 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
     this.intSvr.setActiveRoute(route)
   }
 
-  public async registrar(persona: PersonaReferenciaDto) {
+  public async registrar(persona: PersonaReferenciaDto, esMOdal: boolean) {
+    persona.idPersonaReferenciaPadre = this.idPersonaPadre;
     const data: PersonaReferenciaDto = await this.svrReferencia.registrarPersona(persona);
+    if (esMOdal)
+      return;
     this.outPersona.emit(data);
   }
 
@@ -69,7 +73,6 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.objSubscripcion = this.store.select('accionComponenteBarraHerramientas').subscribe((data: botonesBarraHerramientas) => {
-
       if (data === 'CANCELAR') {
         this.persona.idPersonaReferencia = undefined;
       }
@@ -80,7 +83,7 @@ export class RegistroClienteComponent implements OnInit, OnDestroy {
         /*this.procesarPagoCierreCXP();*/
       }
       if (data == "GUARDAR") {
-        this.registrar(this.persona);
+        this.registrar(this.persona, false);
       }
     });
   }

@@ -93,6 +93,16 @@ export class BarraHerramientasComponent implements OnInit, OnDestroy {
     this.store.dispatch(setAccion({accion}));
   }
 
+  accionAgegar(accion: botonesBarraHerramientas) {
+    accion = 'VOID';
+    this.store.dispatch(setAccion({accion}));
+    accion = 'AGREGAR';
+    this.store.dispatch(setAccion({accion}));
+    this.objBtn = new BarraHerramientaBoton(true);
+    accion = 'VOID';
+    this.store.dispatch(setAccion({accion}));
+  }
+
   /*  accionGuardar(accion: botonesBarraHerramientas) {
       accion = 'VOID';
       this.store.dispatch(setAccion({accion}));
@@ -144,6 +154,7 @@ export class BarraHerramientaBoton {
   verCancelar: boolean | undefined;
   verGuardar: boolean | undefined;
   verProcesar: boolean | undefined;
+  verAgregar: boolean = false;
   reportePantalla: ReporteObjComponent;
 
   constructor(verNuevo?: boolean | undefined, verProcesar?: boolean | undefined, reportePantalla?: ReporteObjComponent) {

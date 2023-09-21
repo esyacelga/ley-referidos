@@ -9,13 +9,15 @@ import {createTranslateLoader} from "../siisspol-web/modules/pages/page.module";
 import {HttpClient} from "@angular/common/http";
 import { PersonaReferenciaContenedorComponent } from './componentes/persona-referencia-contenedor/persona-referencia-contenedor.component';
 import { GridPersonaReferenciaComponent } from './componentes/persona-referencia-contenedor/grid-persona-referencia/grid-persona-referencia.component';
+import { EmergPersonaReferenciaComponent } from './componentes/persona-referencia-contenedor/emerg-persona-referencia/emerg-persona-referencia.component';
 
 
 @NgModule({
   declarations: [
     RegistroClienteComponent,
     PersonaReferenciaContenedorComponent,
-    GridPersonaReferenciaComponent
+    GridPersonaReferenciaComponent,
+    EmergPersonaReferenciaComponent
   ],
   imports: [
     CommonModule,

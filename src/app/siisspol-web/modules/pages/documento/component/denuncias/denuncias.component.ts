@@ -60,7 +60,6 @@ export class DenunciasComponent implements OnInit {
               private svtDenuncia: DenunciaService,
               private toastr: ToastrService,
               private svrTrsnslate: TranslateService,
-              private messageService: MessageService,
               private svrUpload: UploadService,
               private svrAdjunto: DenunciaArchivoService,
               private intSvr: ExecuteCallProcedureService) {
