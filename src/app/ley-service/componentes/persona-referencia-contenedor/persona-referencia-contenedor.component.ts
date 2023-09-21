@@ -39,6 +39,9 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
     this.objBtn = new BarraHerramientaBoton(true, undefined);
     this.personaReferenciaDto = persona;
     this.objBtn.verAgregar = true;
+    if (this.personaReferenciaDto.agregarReferido)
+      this.objBtn.verGuardar = false;
+
   }
 
 
@@ -65,13 +68,13 @@ export class PersonaReferenciaContenedorComponent implements OnInit, OnDestroy {
     });
   }
 
-  /*  public revisarPersonaRegistrada(personaActual: PersonaReferenciaDto) {
-      // @ts-ignore
-      if (personaActual && personaActual.idPersonaReferencia) {
-        this.personaReferenciaDto.idPersonaReferencia = undefined;
-        this.objBtn = new BarraHerramientaBoton(undefined, undefined);
-      }
-    }*/
+  public revisarPersonaRegistrada(personaActual: PersonaReferenciaDto) {
+    // @ts-ignore
+    if (personaActual && personaActual.idPersonaReferencia) {
+      this.personaReferenciaDto.idPersonaReferencia = undefined;
+      this.objBtn = new BarraHerramientaBoton(undefined, undefined);
+    }
+  }
 
   ngOnDestroy(): void {
     this.objSubscripcion?.unsubscribe();

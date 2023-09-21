@@ -2,13 +2,20 @@
 <mat-card>
   <mat-card-content>
     <div *ngIf="personaReferenciaDto.idPersonaReferencia!=undefined">
-      <!--<app-registro-cliente *ngIf="personaReferenciaDto.idPersonaReferencia!=undefined"
+      <app-registro-cliente *ngIf="!personaReferenciaDto.agregarReferido"
                             [personaReferencia]="personaReferenciaDto"
                             (personaReferencia)="revisarPersonaRegistrada($event)"
-      ></app-registro-cliente>-->
-      <app-ver-persona-referencia [personaReferencia]="personaReferenciaDto">
-      </app-ver-persona-referencia>
-
+      ></app-registro-cliente>
+      <div *ngIf="personaReferenciaDto.agregarReferido">
+        <app-ver-persona-referencia
+          [personaReferencia]="personaReferenciaDto">
+        </app-ver-persona-referencia>
+        <div class="line-lg"></div>
+        <app-grid-persona-referencia
+          [idPadreCliente]="personaReferenciaDto.idPersonaReferencia!"
+          (personaCliente)="cargarPersona($event)">
+        </app-grid-persona-referencia>
+      </div>
     </div>
 
 

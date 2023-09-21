@@ -4,6 +4,8 @@
   "ley.label.telefono": "Telefono",
   "ley.label.direccion": "Direccion",
   "ley.label.agregar": "Agregar",
+  "ley.label.registro.guardardado": "El cliente se ha registrado exitosamente",
+  "ley.label.loading.registro.cliente": "Registrando cliente...",
   "ley.label.fecha.nacimiento": "Fecha Nacimiento",
   "siisspolweb.tooltip.comun.agegar": "Abre panel adicional para agreagar una descripci\u00f3n",
   "siisspolweb.tooltip.comun.descripcion": "Agregue una descripci\u00f3n",

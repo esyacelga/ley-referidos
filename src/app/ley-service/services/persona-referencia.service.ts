@@ -28,8 +28,8 @@ export class PersonaReferenciaService {
 
   public async registrarPersona(personaDto: PersonaReferenciaDto) {
     const opcionesRespuesta = new RequestOptions();
-    opcionesRespuesta.successMessaje = this.svrTrsnslate.instant('siisspolweb.guardado.documento.denuncia');
-    opcionesRespuesta.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.denuncia');
+    opcionesRespuesta.successMessaje = this.svrTrsnslate.instant('ley.label.registro.guardardado');
+    opcionesRespuesta.loadingMessage = this.svrTrsnslate.instant('ley.label.loading.registro.cliente');
     opcionesRespuesta.restUrlTransacciones = PROC_POST_XML_GENERICO_INTRANET;
     opcionesRespuesta.responseType = "ENTIDAD";
     const objeto: PersonaReferenciaDto = await (this.rest.servicioRestGenericoPost(personaDto, PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA, opcionesRespuesta)) as PersonaReferenciaDto;
@@ -45,4 +45,12 @@ export class PersonaReferenciaService {
     return lst;
   }
 
+  public async obtenerClientePorPadre(idPadre: number) {
+    const filtro: FiltroSpConsultas = {filtro: idPadre.toString(), tipoConsulta: 'OBTENER-PERSONAS-PADRE'};
+    const objPeticion: RequestOptions = new RequestOptions();
+    objPeticion.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.lista.denuncia');
+    objPeticion.restUrlConsultas = PROC_GET_XML_GENERICO_INTRANET;
+    const lst = await (this.rest.getGenericObjects(filtro, LEY_CONSULTAS, objPeticion) as unknown as PersonaReferenciaDto[]);
+    return lst;
+  }
 }
