@@ -6,7 +6,6 @@ import {UploadService} from "../../siisspol-web/modules/system/services/system/u
 import {TranslateService} from "@ngx-translate/core";
 import {PersonaReferenciaDto} from "../classes/PersonaReferenciaDto";
 import {RequestOptions} from "../../siisspol-web/modules/system/classes/RequestOptions";
-import {DenunciaDto} from "../../siisspol-web/modules/pages/documento/classes/dto/DenunciaDto";
 import {
   PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA
 } from "../../siisspol-web/modules/pages/constantes/transaccion-constante";
@@ -32,8 +31,8 @@ export class PersonaReferenciaService {
     opcionesRespuesta.successMessaje = this.svrTrsnslate.instant('siisspolweb.guardado.documento.denuncia');
     opcionesRespuesta.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.denuncia');
     opcionesRespuesta.restUrlTransacciones = PROC_POST_XML_GENERICO_INTRANET;
-    opcionesRespuesta.presentarToast = false;
-    const objeto: DenunciaDto = await (this.rest.servicioRestGenericoPost(personaDto, PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA, opcionesRespuesta)) as DenunciaDto;
+    opcionesRespuesta.responseType = "ENTIDAD";
+    const objeto: PersonaReferenciaDto = await (this.rest.servicioRestGenericoPost(personaDto, PERSISTENCIA_PROC_XML_CRUD_PERSONA_REFERENCIA, opcionesRespuesta)) as PersonaReferenciaDto;
     return objeto;
   }
 

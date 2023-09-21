@@ -1,19 +1,19 @@
 export class PersonaReferenciaDto {
-  idPesonaReferencia: undefined | number;
-  idPesonaReferenciaPadre: number;
+  idPersonaReferencia: undefined | number;
+  idPersonaReferenciaPadre: number;
   cedula: string;
   nombre: string;
   telefono: string;
   direccion: string;
-  fechaNaciminento: string = '';
+  fechaNacimiento: string = '';
 
-  constructor(idPesonaReferencia: undefined | number, idPesonaReferenciaPadre: number, cedula: string, nombre: string, telefono: string, direccion: string, fechaNacimiento?: string) {
-    this.idPesonaReferencia = idPesonaReferencia;
-    this.idPesonaReferenciaPadre = idPesonaReferenciaPadre;
+  constructor(idPersonaReferencia: undefined | number, idPersonaReferenciaPadre: number, cedula: string, nombre: string, telefono: string, direccion: string, fechaNacimiento?: string) {
+    this.idPersonaReferencia = idPersonaReferencia;
+    this.idPersonaReferenciaPadre = idPersonaReferenciaPadre;
     this.cedula = cedula;
     this.nombre = nombre;
     this.telefono = telefono;
     this.direccion = direccion;
-    this.fechaNaciminento = fechaNacimiento!;
+    this.fechaNacimiento = fechaNacimiento!;
   }
 }

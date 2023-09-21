@@ -1,16 +1,17 @@
 <app-barra-herramientas [objBtn]="objBtn"></app-barra-herramientas>
 <mat-card>
   <mat-card-content>
-    <pre>
+    <!--<pre>
       {{persona|json}}
-    </pre>
-    <div class="row" *ngIf="persona.idPesonaReferencia==0">
+    </pre>-->
+    <div class="row" *ngIf="persona.idPersonaReferencia !=undefined">
       <div class="col-sm-12 col-md-6 col-lg-6">
         <label
           class="l-h-0x font-bold small">{{'ley.label.cedula'|translate}}</label>
         <input class="form-control" type="text"
                matInput maxlength="20"
                (keyup.enter)="cargarPersona(persona.cedula)"
+               (keyup.tab)="cargarPersona(persona.cedula)"
                [(ngModel)]="persona.cedula"
                placeholder="" required="true">
 
@@ -45,15 +46,15 @@
       </div>
       <div class="col-sm-12 col-md-3 col-lg-3">
         <label
-          class="l-h-0x font-bold small">{{'ley.label.fecha.nacimiento'|translate}}</label>
+          class="l-h-0x font-bold small">{{'ley.label.fecha.nacimiento'|translate}}:...</label>
         <p-calendar inputId="fechaMaximaEjecucion" dateFormat="dd/mm/yy"
-                    [(ngModel)]="persona.fechaNaciminento" [locale]="CALENDER_CONFIG_EN"></p-calendar>
+                    [(ngModel)]="persona.fechaNacimiento" [locale]="CALENDER_CONFIG_EN"></p-calendar>
 
       </div>
 
     </div>
 
-    <div *ngIf="persona.idPesonaReferencia!=0">
+    <div *ngIf="persona.idPersonaReferencia==undefined">
       <p-table [value]="lstPersonas"
                styleClass="p-datatable-striped" selectionMode="single"
                [paginator]="true" [rows]="10" [showCurrentPageReport]="true"

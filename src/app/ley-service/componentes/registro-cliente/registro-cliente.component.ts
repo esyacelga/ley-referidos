@@ -25,7 +25,6 @@ export class RegistroClienteComponent implements OnInit {
   objBtn: BarraHerramientaBoton = new BarraHerramientaBoton(undefined, undefined);
   lstPersonas: PersonaReferenciaDto [] = new Array();
   persona: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
-  objPersona: PersonaDto | undefined;
   CALENDER_CONFIG_EN: any;
 
   constructor(public svrReferencia: PersonaReferenciaService,
@@ -40,11 +39,20 @@ export class RegistroClienteComponent implements OnInit {
     this.intSvr.setActiveRoute(route)
   }
 
-  //data:PersonaDto= new PersonaDto();
+  public async registrarPesona(objeto: PersonaReferenciaDto) {
+    const data: PersonaReferenciaDto = await this.svrReferencia.registrarPersona(objeto);
+    if (data) {
+      this.persona = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
+      this.cargarGrid();
+      this.objBtn = new BarraHerramientaBoton(undefined, undefined);
+    }
+  }
+
+
   public async cargarPersona(cedula: string) {
     const objPersona: PersonaDto = (await this.svrPersona.buscarPersona(cedula) as PersonaDto);
     this.persona.nombre = objPersona.nombre!;
-    this.persona.fechaNaciminento = this.milisegundosAFechaString(objPersona.fechaNacimiento);
+    this.persona.fechaNacimiento = this.milisegundosAFechaString(objPersona.fechaNacimiento);
 
   }
 
@@ -72,15 +80,15 @@ export class RegistroClienteComponent implements OnInit {
     this.cargarGrid();
     this.objSubscripcion = this.store.select('accionComponenteBarraHerramientas').subscribe((data: botonesBarraHerramientas) => {
       if (data === 'GUARDAR') {
-        //this.registrarNuevoEstado();
+        this.registrarPesona(this.persona);
       }
       if (data === 'CANCELAR') {
-        //this.objDenuncia = undefined;
+        this.persona.idPersonaReferencia = undefined;
         this.objBtn = new BarraHerramientaBoton(undefined, undefined);
-        this.objBtn.verNuevo = false;
+        this.cargarGrid();
       }
       if (data === 'NUEVO') {
-        /*this.crearNuevoRegistro();*/
+        this.persona.idPersonaReferencia = 0
       }
       if (data === 'PROCESAR') {
         /*this.procesarPagoCierreCXP();*/
@@ -89,7 +97,7 @@ export class RegistroClienteComponent implements OnInit {
   }
 
   editarRegistro(objeto: PersonaReferenciaDto) {
-    this.persona.idPesonaReferencia = 0
-
+    this.persona = objeto;
+    this.objBtn = new BarraHerramientaBoton(true, undefined);
   }
 }
