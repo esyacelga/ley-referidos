@@ -17,7 +17,7 @@ import {PersonaReferenciaDto} from "../../classes/PersonaReferenciaDto";
 })
 export class ClienteVistaReferenciaComponent implements OnInit, OnDestroy {
   lstPersonas: PersonaReferenciaDto [] = new Array();
-  personaReferenciaDto: PersonaReferenciaDto=new PersonaReferenciaDto(undefined,0,'','','','');
+  personaReferenciaDto: PersonaReferenciaDto = new PersonaReferenciaDto(undefined, 0, '', '', '', '');
 
   constructor(public svrReferencia: PersonaReferenciaService,
               private store: Store<AppState>,
@@ -26,7 +26,7 @@ export class ClienteVistaReferenciaComponent implements OnInit, OnDestroy {
               private svrTrsnslate: TranslateService,
               private intSvr: ExecuteCallProcedureService
   ) {
-    this.intSvr.setActiveRoute(route);
+    this.intSvr.setWithOutSeccion();
   }
 
   ngOnDestroy(): void {

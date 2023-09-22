@@ -12,6 +12,7 @@
   <app-grid-vista *ngIf="personaReferenciaDto.idPersonaReferencia==undefined"
                   (outPersona)="personaReferenciaDto=$event"></app-grid-vista>
   <app-formulario-vista *ngIf="personaReferenciaDto.idPersonaReferencia!=undefined"
-                        [inputPesona]="personaReferenciaDto"></app-formulario-vista>
+                        (outPersona)="personaReferenciaDto=$event"
+                        [inputPersona]="personaReferenciaDto"></app-formulario-vista>
 
 </div>

@@ -11,11 +11,11 @@ import {
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '**', component: ClienteVistaReferenciaComponent
   },
 
   {
-    path: 'vista-referencia/:informacionSesion', component: ClienteVistaReferenciaComponent
+    path: 'home', component: ClienteVistaReferenciaComponent
   },
 
   {

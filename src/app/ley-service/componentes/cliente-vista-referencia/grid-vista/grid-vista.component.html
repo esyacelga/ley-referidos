@@ -4,7 +4,11 @@
              styleClass="p-datatable-striped" selectionMode="single"
              [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
              [rowsPerPageOptions]="[10,25,50]">
-
+      <ng-template *ngIf="intputPersona>0" pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          {{'ley.label.nombre.titulo.grid'|translate}}
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="idPersonaReferencia">{{'siisspolweb.comun.label.id'|translate}}

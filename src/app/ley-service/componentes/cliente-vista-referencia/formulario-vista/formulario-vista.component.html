@@ -12,5 +12,18 @@
     </div>
   </mat-card-content>
 </mat-card>
+<mat-card>
+  <mat-card-content>
+    <button type="button" class="btn btn-primary btn-sm"
+            id="ng-btn-nuevo"
+            matTooltip="{{'ley.label.volver'|translate}}"
+            matTooltipPosition="below"
+            (click)="volver()"
+    >
+      <i class="fa fa-reply" aria-hidden="true"></i>
+      {{"ley.label.volver"|translate}}
+    </button>
+  </mat-card-content>
+</mat-card>
 
 <app-grid-vista [intputPersona]="inputPersona.idPersonaReferencia!"></app-grid-vista>
