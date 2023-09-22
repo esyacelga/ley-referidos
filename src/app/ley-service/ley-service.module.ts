@@ -11,6 +11,9 @@ import { PersonaReferenciaContenedorComponent } from './componentes/persona-refe
 import { GridPersonaReferenciaComponent } from './componentes/persona-referencia-contenedor/grid-persona-referencia/grid-persona-referencia.component';
 import { EmergPersonaReferenciaComponent } from './componentes/persona-referencia-contenedor/emerg-persona-referencia/emerg-persona-referencia.component';
 import { VerPersonaReferenciaComponent } from './componentes/persona-referencia-contenedor/ver-persona-referencia/ver-persona-referencia.component';
+import { ClienteVistaReferenciaComponent } from './componentes/cliente-vista-referencia/cliente-vista-referencia.component';
+import { GridVistaComponent } from './componentes/cliente-vista-referencia/grid-vista/grid-vista.component';
+import { FormularioVistaComponent } from './componentes/cliente-vista-referencia/formulario-vista/formulario-vista.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { VerPersonaReferenciaComponent } from './componentes/persona-referencia-
     PersonaReferenciaContenedorComponent,
     GridPersonaReferenciaComponent,
     EmergPersonaReferenciaComponent,
-    VerPersonaReferenciaComponent
+    VerPersonaReferenciaComponent,
+    ClienteVistaReferenciaComponent,
+    GridVistaComponent,
+    FormularioVistaComponent
   ],
   imports: [
     CommonModule,

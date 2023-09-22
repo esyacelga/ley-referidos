@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-content>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <label
+        class="l-h-0x font-bold">{{'ley.label.nombre.completo'|translate}}:</label>
+      <div class="line-sm"></div>
+      <input class="form-control" type="text"
+             matInput
+             disabled="true"
+             [(ngModel)]="inputPersona.nombre"
+             placeholder="" required="true">
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<app-grid-vista [intputPersona]="inputPersona.idPersonaReferencia!"></app-grid-vista>

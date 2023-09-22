@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">LEY-SERVICE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<!--<app-barra-herramientas></app-barra-herramientas>-->
+<div class="ui-cuerpo-pagina">
+  <app-grid-vista *ngIf="personaReferenciaDto.idPersonaReferencia==undefined"
+                  (outPersona)="personaReferenciaDto=$event"></app-grid-vista>
+  <app-formulario-vista *ngIf="personaReferenciaDto.idPersonaReferencia!=undefined"
+                        [inputPesona]="personaReferenciaDto"></app-formulario-vista>
+
+</div>

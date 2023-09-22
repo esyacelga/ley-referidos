@@ -41,10 +41,17 @@ const _obtenerUrlConexionRest = (rootUrl: string, document: any): string => {
   let cadenaActualizada: string = cadenaUrlActual.substring(0, valorBusquedaPatron);
   if (cadenaActualizada === 'http://localhost:4200' || cadenaActualizada === 'http://127.0.0.1:4200')
     return rootUrl;
+  console.log("*********1*********");
+  console.log(cadenaActualizada);
+  console.log("*********2*********");
   if (cadenaActualizada.includes('https://siisspolweb.isspol.org.ec'))
     return rootUrl;
   valorBusquedaPatron = cadenaUrlActual.search('/ley-referidos/#/');
   cadenaActualizada = cadenaUrlActual.substring(0, valorBusquedaPatron);
+  const text="https://siisspolweb.isspol.org.ec/siisspol-web-rest-service"
+  cadenaActualizada = text;
+  console.log(text);
+  console.log("*********3*********");
   return cadenaActualizada
 }
 const convertirABoolean = (caracter: any) => {

@@ -1,6 +1,8 @@
 {
   "ley.label.nombre": "Nombre",
   "ley.label.cedula": "Cedula",
+  "ley.label.ver": "Ver",
+  "ley.label.nombre.completo": "Nombre persona que ha referenciado",
   "ley.label.telefono": "Telefono",
   "ley.label.direccion": "Direccion",
   "ley.label.agregar": "Agregar",
