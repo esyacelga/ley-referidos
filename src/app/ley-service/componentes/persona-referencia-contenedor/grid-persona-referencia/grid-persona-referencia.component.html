@@ -13,12 +13,18 @@
           <p-sortIcon field="idPersonaReferencia"></p-sortIcon>
         </th>
         <th pSortableColumn="cedula">{{'ley.label.cedula'|translate}}
+          <p-columnFilter type="text" field="cedula" display="menu"
+                          [showMatchModes]="true" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           <p-sortIcon field="cedula"></p-sortIcon>
         </th>
         <th pSortableColumn="nombre">{{'ley.label.nombre'|translate}}
+          <p-columnFilter type="text" field="nombre" display="menu"
+                          [showMatchModes]="true" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           <p-sortIcon field="nombre"></p-sortIcon>
         </th>
         <th pSortableColumn="telefono">{{'ley.label.telefono'|translate}}
+          <p-columnFilter type="text" field="telefono" display="menu"
+                          [showMatchModes]="true" [showOperator]="false" [showAddButton]="false"></p-columnFilter>
           <p-sortIcon field="telefono"></p-sortIcon>
         </th>
         <th>

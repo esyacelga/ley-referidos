@@ -6,7 +6,7 @@
     "start": "ng serve --open",
     "debug": "ng serve --configuration=development --watch --open",
     "build": "ng build",
-    "build:prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --configuration=production --base-href=/ley-referidos/",
+    "build:prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --configuration=production ",
     "build:qa": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --configuration=qa --base-href=/ley-referidos/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

@@ -54,20 +54,6 @@ export class RestConnectionService {
   };
 
 
-  public genericGetRestFull = (genericObject: any, genericGetRestFull: string): Observable<any> => {
-    const url = ROOT_URL + '/' + genericGetRestFull;
-    return this.http.put(url, genericObject);
-  };
-
-
-  public genericPostRestFull = (genericObject: any, urlRestService: string, nombreSP: string,): Observable<any> => {
-    const data = this.utilitario.toXML(genericObject);
-    const obj = new RequestDto();
-    obj.valorXml = data;
-    obj.storeProcedure = nombreSP;
-    const url = ROOT_URL + '/' + urlRestService;
-    return this.http.put(url, obj);
-  };
 
 
 }
