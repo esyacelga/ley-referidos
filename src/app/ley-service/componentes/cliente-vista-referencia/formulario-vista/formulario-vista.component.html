@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="col-sm-12 col-md-6 col-lg-6">
       <label
         class="l-h-0x font-bold">{{'ley.label.nombre.completo'|translate}}:</label>
       <div class="line-sm"></div>
@@ -8,6 +8,16 @@
              matInput
              disabled="true"
              [(ngModel)]="inputPersona.nombre"
+             placeholder="" required="true">
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <label
+        class="l-h-0x font-bold">{{'ley.label.contador'|translate}}:</label>
+      <div class="line-sm"></div>
+      <input class="form-control" type="text"
+             matInput
+             disabled="true"
+             [(ngModel)]="inputPersona.contador"
              placeholder="" required="true">
     </div>
   </mat-card-content>

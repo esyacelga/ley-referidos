@@ -61,4 +61,9 @@ export class GridPersonaReferenciaComponent implements OnInit, OnDestroy {
     item.agregarReferido = true;
     this.personaCliente.emit(item)
   }
+
+  agregarNuevoViaje(item: PersonaReferenciaDto) {
+    item.incrementar= true;
+    this.svrReferencia.registrarPersona(item);
+  }
 }

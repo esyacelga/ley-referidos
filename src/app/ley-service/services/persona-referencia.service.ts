@@ -39,7 +39,7 @@ export class PersonaReferenciaService {
   public async obtenerPersonas() {
     const filtro: FiltroSpConsultas = {filtro: '', tipoConsulta: 'OBTENER-PERSONAS'};
     const objPeticion: RequestOptions = new RequestOptions();
-    objPeticion.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.lista.denuncia');
+    objPeticion.loadingMessage = this.svrTrsnslate.instant('ley.label.cargar.clientes');
     objPeticion.restUrlConsultas = PROC_GET_XML_GENERICO_INTRANET;
     const lst = await (this.rest.getGenericObjects(filtro, LEY_CONSULTAS, objPeticion) as unknown as PersonaReferenciaDto[]);
     return lst;
@@ -48,7 +48,7 @@ export class PersonaReferenciaService {
   public async obtenerClientePorPadre(idPadre: number) {
     const filtro: FiltroSpConsultas = {filtro: idPadre.toString(), tipoConsulta: 'OBTENER-PERSONAS-PADRE'};
     const objPeticion: RequestOptions = new RequestOptions();
-    objPeticion.loadingMessage = this.svrTrsnslate.instant('siisspolweb.loading.documento.lista.denuncia');
+    objPeticion.loadingMessage = this.svrTrsnslate.instant('ley.label.cargar.clientes');
     objPeticion.restUrlConsultas = PROC_GET_XML_GENERICO_INTRANET;
     const lst = await (this.rest.getGenericObjects(filtro, LEY_CONSULTAS, objPeticion) as unknown as PersonaReferenciaDto[]);
     return lst;

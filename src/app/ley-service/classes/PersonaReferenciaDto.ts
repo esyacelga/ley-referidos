@@ -7,6 +7,8 @@ export class PersonaReferenciaDto {
   direccion: string;
   fechaNacimiento: string = '';
   agregarReferido: boolean = false;
+  incrementar: boolean = false;
+  contador: number = 0;
 
   constructor(idPersonaReferencia: undefined | number, idPersonaReferenciaPadre: number, cedula: string, nombre: string, telefono: string, direccion: string, fechaNacimiento?: string) {
     this.idPersonaReferencia = idPersonaReferencia;
