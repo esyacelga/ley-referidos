@@ -11,7 +11,7 @@ import {
 
 const routes: Routes = [
   {
-    path: '**', component: ClienteVistaReferenciaComponent
+    path: '*', component: ClienteVistaReferenciaComponent
   },
 
   {
