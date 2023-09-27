@@ -21,7 +21,7 @@
             <p-sortIcon field="nombre"></p-sortIcon>
           </th>
 
-          <th>
+          <th *ngIf="intputPersona==0">
             {{'siisspolweb.comun.accion'|translate}}
           </th>
         </tr>
@@ -34,7 +34,7 @@
 
           <td>{{item.nombre}}</td>
 
-          <td>
+          <td *ngIf="intputPersona==0">
 
             <button mat-mini-fab
                     (click)="verInforacion(item)"
